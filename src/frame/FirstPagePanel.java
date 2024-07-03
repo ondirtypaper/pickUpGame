@@ -1,5 +1,6 @@
 package frame;
 
+import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Container;
 import java.awt.Graphics;
@@ -18,6 +19,8 @@ public class FirstPagePanel extends JPanel implements ActionListener {
 	JPanel mapPanel;
 	JLabel popUpLabel;
 	JLabel userLabel;
+	ControlPanel controlPanel;
+	
 	JLabel[] itemLabels = new JLabel[10];
 	int x;
 	int y;
@@ -25,6 +28,7 @@ public class FirstPagePanel extends JPanel implements ActionListener {
 	int timerDelay = 75;
 	int raderRadius = 75;
 	int animationCount = 0;
+	int itemPopCount = 0;
 
 	ArrayList<MapItem> list;
 
@@ -45,7 +49,7 @@ public class FirstPagePanel extends JPanel implements ActionListener {
 	FirstPagePanel() {
 		setBackground(Color.white);
 		setLayout(null);
-		setSize(600, 800);
+		setSize(600, 900);
 
 		mapPanel = new JPanel();
 		mapPanel.setBackground(Color.LIGHT_GRAY);
@@ -56,9 +60,9 @@ public class FirstPagePanel extends JPanel implements ActionListener {
 		ImageIcon myFace = new ImageIcon("res/icons8-human-head-48.png");
 		userLabel = new JLabel(myFace);
 		// userLabel.setText("me!");
-		userLabel.setSize(100, 100);
+		userLabel.setSize(50, 50);
 		userLabel.setOpaque(true);
-		userLabel.setLocation(250, 250);
+		userLabel.setLocation(275, 275);
 
 		mapPanel.add(userLabel);
 
@@ -68,10 +72,16 @@ public class FirstPagePanel extends JPanel implements ActionListener {
 		popUpLabel.setSize(600, 200);
 		popUpLabel.setLocation(0, 600);
 
+		controlPanel = new ControlPanel();
+		controlPanel.setBackground(Color.gray);
+		controlPanel.setSize(600,100);
+		controlPanel.setLocation(0,800);
+		
 		this.add(mapPanel);
 		this.add(userLabel);
 		this.add(popUpLabel);
-
+		this.add(controlPanel);
+		
 		initForTest();
 		timer = new Timer(500, this);
 		timer.start();
@@ -114,22 +124,27 @@ public class FirstPagePanel extends JPanel implements ActionListener {
 		getCenterGPS();
 		findItems(x,y);
 		repaint();
+		itemPopCount++;
 	}
 	
 	public void findItems(int x, int y) {
 		
 		// updateRequest(x, y); 
-		for(MapItem item : list) {
-			this.setItem(item);
+//		for(MapItem item : list) {
+//			this.setItem(item);
+//		}
+		if(list.size() > itemPopCount) {
+			//System.out.println(list.size());
+			this.setItem(list.get(itemPopCount), itemPopCount);
 		}
 	}
 
-	public void setItem(MapItem item) {
-		itemLabels[item.id] = new JLabel();
-		itemLabels[item.id].setText(" " + item.id);
-		itemLabels[item.id].setSize(100,100);
-		itemLabels[item.id].setLocation((item.x - x) + 300 ,(item.y - y) + 300);
-		this.add(itemLabels[item.id]);
+	public void setItem(MapItem item, int index) {
+		itemLabels[index] = new JLabel();
+		itemLabels[index].setText(" " + item.id);
+		itemLabels[index].setSize(100,100);
+		itemLabels[index].setLocation((item.x - x) + 300 ,(item.y - y) + 300);
+		this.add(itemLabels[index]);
 		System.out.println("try to set item" + item.id + " at " + (item.x - x) + "," + (item.y - y));
 	}
 	
@@ -137,5 +152,7 @@ public class FirstPagePanel extends JPanel implements ActionListener {
 		list = new ArrayList<FirstPagePanel.MapItem>();
 		list.add(new MapItem(1, 20, 20, 1));
 		list.add(new MapItem(2, -100, -100, 1));
+		list.add(new MapItem(3, 200, 200, 2));
+		list.add(new MapItem(4, -175, 175, 2));
 	}
 }

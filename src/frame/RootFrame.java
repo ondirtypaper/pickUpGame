@@ -18,7 +18,9 @@ public class RootFrame extends JFrame{
 		setLayout(null);
 		setBounds(((int) tk.getScreenSize().getWidth()) / 2 - 300, ((int) tk.getScreenSize().getHeight()) / 2 - 400,
 				600, 900);
+		this.setLocationRelativeTo(null);
 		add(e);
+		setResizable(false);
 		setVisible(true);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 			
