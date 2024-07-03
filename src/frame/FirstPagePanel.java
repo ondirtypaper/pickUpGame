@@ -25,15 +25,15 @@ public class FirstPagePanel extends JPanel implements ActionListener {
 	int raderRadius = 75;
 	int animationCount = 0;
 
-	ArrayList<mapItem> list;
+	ArrayList<MapItem> list;
 
-	private class mapItem {
+	private class MapItem {
 		int id;
 		int x;
 		int y;
 		int itemType;
 
-		public mapItem(int id, int x, int y, int itemType) {
+		public MapItem(int id, int x, int y, int itemType) {
 			this.id = id;
 			this.x = x;
 			this.y = y;
@@ -71,6 +71,7 @@ public class FirstPagePanel extends JPanel implements ActionListener {
 		this.add(userLabel);
 		this.add(popUpLabel);
 
+		initForTest();
 		timer = new Timer(500, this);
 		timer.start();
 
@@ -109,8 +110,31 @@ public class FirstPagePanel extends JPanel implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 
 		//System.out.println("Who called action?" + e.getSource());
-
+		getCenterGPS();
+		findItems(x,y);
 		repaint();
 	}
+	
+	public void findItems(int x, int y) {
+		
+		// updateRequest(x, y); 
+		for(MapItem item : list) {
+			this.setItem(item);
+		}
+	}
 
+	public void setItem(MapItem item) {
+		JLabel itemLabel = new JLabel();
+		itemLabel.setText(" " + item.id);
+		itemLabel.setSize(100,100);
+		itemLabel.setLocation((item.x - x) + 300 ,(item.y - y) + 300);
+		this.add(itemLabel);
+		System.out.println("try to set item" + item.id + " at " + (item.x - x) + "," + (item.y - y));
+	}
+	
+	public void initForTest() {
+		list = new ArrayList<FirstPagePanel.MapItem>();
+		list.add(new MapItem(1, 20, 20, 1));
+		list.add(new MapItem(2, -20, -20, 1));
+	}
 }
