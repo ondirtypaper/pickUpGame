@@ -18,6 +18,7 @@ public class FirstPagePanel extends JPanel implements ActionListener {
 	JPanel mapPanel;
 	JLabel popUpLabel;
 	JLabel userLabel;
+	JLabel[] itemLabels = new JLabel[10];
 	int x;
 	int y;
 	Timer timer;
@@ -124,17 +125,17 @@ public class FirstPagePanel extends JPanel implements ActionListener {
 	}
 
 	public void setItem(MapItem item) {
-		JLabel itemLabel = new JLabel();
-		itemLabel.setText(" " + item.id);
-		itemLabel.setSize(100,100);
-		itemLabel.setLocation((item.x - x) + 300 ,(item.y - y) + 300);
-		this.add(itemLabel);
+		itemLabels[item.id] = new JLabel();
+		itemLabels[item.id].setText(" " + item.id);
+		itemLabels[item.id].setSize(100,100);
+		itemLabels[item.id].setLocation((item.x - x) + 300 ,(item.y - y) + 300);
+		this.add(itemLabels[item.id]);
 		System.out.println("try to set item" + item.id + " at " + (item.x - x) + "," + (item.y - y));
 	}
 	
 	public void initForTest() {
 		list = new ArrayList<FirstPagePanel.MapItem>();
 		list.add(new MapItem(1, 20, 20, 1));
-		list.add(new MapItem(2, -20, -20, 1));
+		list.add(new MapItem(2, -100, -100, 1));
 	}
 }
