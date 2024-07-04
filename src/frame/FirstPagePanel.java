@@ -6,6 +6,8 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.util.ArrayList;
 
 import javax.swing.ImageIcon;
@@ -13,7 +15,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 
-public class FirstPagePanel extends JPanel implements ActionListener {
+public class FirstPagePanel extends JPanel implements ActionListener{
 
 	/**
 	 * 
@@ -25,7 +27,7 @@ public class FirstPagePanel extends JPanel implements ActionListener {
 	ControlPanel controlPanel;
 	ImageIcon ballIcon = new ImageIcon("res/justABall.png");
 	
-	JLabel[] itemLabels = new JLabel[10];
+	MapItem[] itemLabels = new MapItem[10];
 	int x;
 	int y;
 	Timer timer;
@@ -36,19 +38,7 @@ public class FirstPagePanel extends JPanel implements ActionListener {
 
 	ArrayList<MapItem> list;
 
-	private class MapItem {
-		int id;
-		int x;
-		int y;
-		int itemType;
-
-		public MapItem(int id, int x, int y, int itemType) {
-			this.id = id;
-			this.x = x;
-			this.y = y;
-			this.itemType = itemType;
-		}
-	}
+	
 
 	FirstPagePanel() {
 		setBackground(Color.white);
@@ -65,7 +55,7 @@ public class FirstPagePanel extends JPanel implements ActionListener {
 		userLabel = new JLabel(myFace);
 		// userLabel.setText("me!");
 		userLabel.setSize(50, 50);
-		userLabel.setOpaque(true);
+		userLabel.setOpaque(false);
 		userLabel.setLocation(275, 275);
 
 		mapPanel.add(userLabel);
@@ -87,7 +77,7 @@ public class FirstPagePanel extends JPanel implements ActionListener {
 		this.add(controlPanel);
 		
 		initForTest();
-		timer = new Timer(500, this);
+		timer = new Timer(250, this);
 		timer.start();
 
 	}
@@ -144,19 +134,20 @@ public class FirstPagePanel extends JPanel implements ActionListener {
 	}
 
 	public void setItem(MapItem item, int index) {
-		itemLabels[index] = new JLabel();
-		itemLabels[index].setIcon(new ImageIcon(ballIcon.getImage().getScaledInstance(50, 50, 3)));
-		itemLabels[index].setSize(50,50);
+		itemLabels[index] = item;
+		itemLabels[index].setName(""+item.id);
 		itemLabels[index].setLocation((item.x - x) + 300 ,(item.y - y) + 300);
 		this.add(itemLabels[index]);
 		System.out.println("try to set item" + item.id + " at " + (item.x - x) + "," + (item.y - y));
 	}
 	
 	public void initForTest() {
-		list = new ArrayList<FirstPagePanel.MapItem>();
+		list = new ArrayList<MapItem>();
 		list.add(new MapItem(1, 20, 20, 1));
 		list.add(new MapItem(2, -100, -100, 1));
 		list.add(new MapItem(3, 200, 200, 2));
 		list.add(new MapItem(4, -175, 175, 2));
 	}
+
+
 }
