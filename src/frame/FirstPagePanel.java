@@ -1,6 +1,5 @@
 package frame;
 
-import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Container;
 import java.awt.Graphics;
@@ -16,10 +15,15 @@ import javax.swing.Timer;
 
 public class FirstPagePanel extends JPanel implements ActionListener {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	JPanel mapPanel;
 	JLabel popUpLabel;
 	JLabel userLabel;
 	ControlPanel controlPanel;
+	ImageIcon ballIcon = new ImageIcon("res/justABall.png");
 	
 	JLabel[] itemLabels = new JLabel[10];
 	int x;
@@ -141,8 +145,8 @@ public class FirstPagePanel extends JPanel implements ActionListener {
 
 	public void setItem(MapItem item, int index) {
 		itemLabels[index] = new JLabel();
-		itemLabels[index].setText(" " + item.id);
-		itemLabels[index].setSize(100,100);
+		itemLabels[index].setIcon(new ImageIcon(ballIcon.getImage().getScaledInstance(50, 50, 3)));
+		itemLabels[index].setSize(50,50);
 		itemLabels[index].setLocation((item.x - x) + 300 ,(item.y - y) + 300);
 		this.add(itemLabels[index]);
 		System.out.println("try to set item" + item.id + " at " + (item.x - x) + "," + (item.y - y));
