@@ -25,9 +25,9 @@ public class FirstPagePanel extends JPanel implements ActionListener{
 	JLabel popUpLabel;
 	JLabel userLabel;
 	ControlPanel controlPanel;
-	ImageIcon ballIcon = new ImageIcon("res/justABall.png");
+	//ImageIcon ballIcon = new ImageIcon("res/justABall.png");
 	
-	MapItem[] itemLabels = new MapItem[10];
+	
 	int x;
 	int y;
 	Timer timer;
@@ -37,7 +37,7 @@ public class FirstPagePanel extends JPanel implements ActionListener{
 	int itemPopCount = 0;
 
 	ArrayList<MapItem> list;
-
+	MapItem[] itemLabels = new MapItem[10];
 	
 
 	FirstPagePanel() {
