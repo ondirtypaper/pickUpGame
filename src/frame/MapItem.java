@@ -7,6 +7,10 @@ import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 
 public class MapItem extends JLabel implements MouseListener{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	int id;
 	int x;
 	int y;
