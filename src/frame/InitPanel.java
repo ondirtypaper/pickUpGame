@@ -102,10 +102,10 @@ public class InitPanel extends JPanel{
 	public void getLogInPanel() {
 		inputPanel.removeAll();
 		
-		JLabel msgLabel = new JLabel("this is label for msg");
-		msgLabel.setLocation(50,0);
+		JLabel msgLabel = new JLabel("이메일과 비밀번호를 입력하여 주세요");
+		msgLabel.setLocation(150,0);
 		msgLabel.setSize(500,50);
-		msgLabel.setBackground(Color.gray);
+		msgLabel.setBackground(Color.white);
 		msgLabel.setOpaque(true);
 		
 		inputPanel.add(msgLabel);
@@ -113,10 +113,10 @@ public class InitPanel extends JPanel{
 		JLabel inputLabel = new JLabel();
 		inputLabel.setLocation(50,50);
 		inputLabel.setSize(500,300);
-		inputLabel.setBackground(Color.gray);
+		inputLabel.setBackground(Color.white);
 		inputLabel.setOpaque(true);
 		
-		JTextField formEmail = new JTextField();
+		JTextField formEmail = new JTextField(" 이메일 (e-mail)");
 		formEmail.setSize(300,50);
 		formEmail.setLocation(100,50);
 		
@@ -135,7 +135,8 @@ public class InitPanel extends JPanel{
 				System.out.println("InitPanel : " + formEmail.getText() + " Log-in request.");
 				// TODO : Learn about JPasswordField.getPassword()
 				int logInMsg = RootFrame.userData.logInRequest(formEmail.getText(), formPassWord.getText());
-				if(logInMsg == RootFrame.userData.LOG_IN_SUCCESS) {
+				if(logInMsg == 0) {
+					// RootFrame.userData.LOG_IN_SUCCESS
 					System.out.println("InitPanel : Log-in Success. " + formEmail.getText());
 					// TODO : RootFrame에 로그인 성공 알림 
 					RootFrame.getInstance(new FirstPagePanel());
@@ -153,7 +154,7 @@ public class InitPanel extends JPanel{
 						break;
 					case 3:
 						System.out.println("Empty User List");
-						msgLabel.setText("서버 접속에 실패하였습니다.");
+						msgLabel.setText("회원 정보를 불러올 수 없습니다.");
 						break;
 					default:
 						System.out.println("Wrong logInMsg");
