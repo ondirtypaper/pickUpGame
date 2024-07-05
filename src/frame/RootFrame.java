@@ -2,6 +2,8 @@ package frame;
 
 
 
+import java.awt.Color;
+
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
@@ -18,6 +20,8 @@ public class RootFrame extends JFrame{
 	public static final int FRAME_HEIGHT = 900;
 	public static Users userData;
 	
+	public static final Color MAIN_RED = new Color(0xC85356);
+	public static final Color MAIN_ORANGE = new Color(0xED6B44);
 	
 	private RootFrame(JPanel e) {
 		

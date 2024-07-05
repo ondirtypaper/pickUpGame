@@ -116,11 +116,11 @@ public class InitPanel extends JPanel{
 		inputLabel.setBackground(Color.white);
 		inputLabel.setOpaque(true);
 		
-		JTextField formEmail = new JTextField(" 이메일 (e-mail)");
+		JTextField formEmail = new JTextField("a@test.com");
 		formEmail.setSize(300,50);
 		formEmail.setLocation(100,50);
 		
-		JPasswordField formPassWord = new JPasswordField();
+		JPasswordField formPassWord = new JPasswordField("1234pass!");
 		formPassWord.setSize(300,50);
 		formPassWord.setLocation(100, 110);
 		

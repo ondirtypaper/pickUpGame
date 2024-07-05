@@ -61,13 +61,13 @@ public class FirstPagePanel extends JPanel implements ActionListener{
 		mapPanel.add(userLabel);
 
 		popUpLabel = new JLabel("  주변 경기장 정보를 탐색중입니다.");
-		popUpLabel.setBackground(Color.gray);
+		popUpLabel.setBackground(RootFrame.MAIN_RED);
 		popUpLabel.setOpaque(true);
 		popUpLabel.setSize(600, 200);
 		popUpLabel.setLocation(0, 600);
 
 		controlPanel = new ControlPanel();
-		controlPanel.setBackground(Color.gray);
+		controlPanel.setBackground(RootFrame.MAIN_RED);
 		controlPanel.setSize(600,100);
 		controlPanel.setLocation(0,800);
 		
