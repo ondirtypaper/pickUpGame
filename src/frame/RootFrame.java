@@ -5,6 +5,8 @@ package frame;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
+import dataManager.Users;
+
 public class RootFrame extends JFrame{
 
 	/**
@@ -14,6 +16,7 @@ public class RootFrame extends JFrame{
 	private static RootFrame instance;
 	public static final int FRAME_WIDTH = 600;
 	public static final int FRAME_HEIGHT = 900;
+	public static Users userData;
 	
 	
 	private RootFrame(JPanel e) {
@@ -27,6 +30,10 @@ public class RootFrame extends JFrame{
 		//		600, 900);
 		this.setSize(FRAME_WIDTH, FRAME_HEIGHT);
 		this.setLocationRelativeTo(null);
+		
+		// userData 초기화
+		userData = new Users();
+		
 		add(e);
 		setResizable(false);
 		setVisible(true);

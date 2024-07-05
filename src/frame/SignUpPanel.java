@@ -11,6 +11,8 @@ import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
+import dataManager.Users;
+
 public class SignUpPanel extends JPanel{
 
 	/**
@@ -78,6 +80,13 @@ public class SignUpPanel extends JPanel{
 		JButton submitButton = new JButton(" 회원 가입 ");
 		submitButton.setSize(150,50);
 		submitButton.setLocation(10,10);
+		submitButton.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				RootFrame.userData.addUser(formUserName.getText(), formEmail.getText(), formPassWord.getText());
+			}
+		});
 		
 		JButton backButton = new JButton(" 뒤로 가기 ");
 		backButton.setSize(150,50);
