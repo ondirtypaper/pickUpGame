@@ -11,6 +11,11 @@ public class Users {
 	public static final int PW_ERROR_SPACE = 2;
 	public static final int PW_ERROR_CHAR = 3;
 	
+	public static final int LOG_IN_SUCCESS = 0;
+	public static final int LOG_IN_WRONG_PW = 1;
+	public static final int LOG_IN_WRONG_EMAIL = 2;
+	public static final int LOG_IN_CANT_FIND_DB = 3;
+	
 	ArrayList<User> regList;
 	ArrayList<ActiveUser> activeList;
 	
@@ -19,6 +24,18 @@ public class Users {
 	public Users(){
 		regList = new ArrayList<User>();
 		activeList = new ArrayList<ActiveUser>();
+	}
+	public int logInRequest(String email, String passWord) {
+		if(regList.size() == 0) return LOG_IN_CANT_FIND_DB;
+			
+		for(User u : regList) {
+			if(u.getEmail().equals(email)) {
+				if(u.getPassWord().equals(passWord)) return LOG_IN_SUCCESS;
+				else return LOG_IN_WRONG_PW;
+			}
+		}
+		
+		return LOG_IN_WRONG_EMAIL;
 	}
 	
 	public boolean addUser(String name, String email, String passWord) {

@@ -124,8 +124,63 @@ public class InitPanel extends JPanel{
 		formPassWord.setSize(300,50);
 		formPassWord.setLocation(100, 110);
 		
+		JButton btn1 = new JButton();
+		btn1.setSize(300, 100);
+		btn1.setLocation(100,180);
+		btn1.setText("pick up your game");
+		btn1.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				System.out.println("InitPanel : " + formEmail.getText() + " Log-in request.");
+				// TODO : Learn about JPasswordField.getPassword()
+				int logInMsg = RootFrame.userData.logInRequest(formEmail.getText(), formPassWord.getText());
+				if(logInMsg == RootFrame.userData.LOG_IN_SUCCESS) {
+					System.out.println("InitPanel : Log-in Success. " + formEmail.getText());
+					// TODO : RootFrame에 로그인 성공 알림 
+					RootFrame.getInstance(new FirstPagePanel());
+				}
+				else {
+					System.out.println("InitPanel : Log-in request denied - 로그인 실패 에러코드 : " + logInMsg );
+					switch(logInMsg) {
+					case 1:
+						System.out.println("Password 불일치");
+						msgLabel.setText("비밀번호가 일치하지 않습니다");
+						break;
+					case 2:
+						System.out.println("Email 불일치");
+						msgLabel.setText("가입되지 않은 이메일입니다.");
+						break;
+					case 3:
+						System.out.println("Empty User List");
+						msgLabel.setText("서버 접속에 실패하였습니다.");
+						break;
+					default:
+						System.out.println("Wrong logInMsg");
+						msgLabel.setText("알 수 없는 이유로 로그인에 실패하였습니다.");
+					}
+				}
+			}
+		});
+		
+		JButton backBtn = new JButton();
+		backBtn.setSize(50, 100);
+		backBtn.setLocation(420, 180);
+		backBtn.setText("<");
+		backBtn.setFocusable(false);
+		backBtn.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				RootFrame.getInstance(new InitPanel());
+				
+			}
+		});
+		
 		inputLabel.add(formEmail);
 		inputLabel.add(formPassWord);
+		inputLabel.add(btn1);
+		inputLabel.add(backBtn);
 		
 		inputPanel.add(inputLabel);
 		
