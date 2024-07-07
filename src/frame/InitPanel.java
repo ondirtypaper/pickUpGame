@@ -39,7 +39,9 @@ public class InitPanel extends JPanel{
 		inputPanel.setLayout(null);
 		inputPanel.setSize(600,400);
 		inputPanel.setLocation(0,500);
+		inputPanel.setBackground(Color.white);
 		
+
 		inputLabel = new JLabel();
 		inputLabel.setSize(600,400);
 		inputLabel.setLocation(0,0);

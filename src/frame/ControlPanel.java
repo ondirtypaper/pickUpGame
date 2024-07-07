@@ -5,6 +5,7 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JPanel;
+import subPage3.*;
 
 public class ControlPanel extends JPanel{
 
@@ -16,7 +17,7 @@ public class ControlPanel extends JPanel{
 	 */
 	private static final long serialVersionUID = 1L;
 
-	ControlPanel(){
+	public ControlPanel(){
 		this.setLayout(null);
 		
 		
@@ -38,8 +39,14 @@ public class ControlPanel extends JPanel{
 		
 		JButton btn1 = new JButton();
 		btn1.setSize(85,50);
-		btn1.setText(" Page 1 ");
+		btn1.setText(" 코트 ");
 		btn1.setLocation(65,5);
+		btn1.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				RootFrame.getInstance(new SubPage3Panel());
+			}
+		});
 		
 		JButton btn2 = new JButton();
 		btn2.setSize(85,50);
