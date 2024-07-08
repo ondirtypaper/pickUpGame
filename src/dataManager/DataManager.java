@@ -152,7 +152,7 @@ public class DataManager {
 			u.setCurrentLocation(p);
 			u.setFavoriteCourtId(-1);
 			activeList.add(u);
-			System.out.println("dataManeger : " + activeList.get(i).getCurrentLocation().getX());
+			//System.out.println("dataManeger : " + activeList.get(i).getCurrentLocation().getX());
 			
 		}
 	}
@@ -161,7 +161,7 @@ public class DataManager {
 	 */
 	public ArrayList<ActiveUser> getAroundActvieUser(Position p){
 		ArrayList<ActiveUser> rList = new ArrayList<ActiveUser>();
-		System.out.println("dataManager : getAroundActiveUser > " + p.x + ", " + p.y);
+		//System.out.println("dataManager : getAroundActiveUser > " + p.x + ", " + p.y);
 		for(ActiveUser a : activeList) {
 			// Just For Test
 			makeMoveActiveUserForDemo(a);
