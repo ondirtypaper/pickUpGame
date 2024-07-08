@@ -13,7 +13,7 @@ import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
-import dataManager.Users;
+import dataManager.DataManager;
 
 public class SignUpPanel extends JPanel{
 
@@ -93,7 +93,7 @@ public class SignUpPanel extends JPanel{
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				RootFrame.userData.addUser(formUserName.getText(), formEmail.getText(), formPassWord.getText());
+				RootFrame.data.addUser(formUserName.getText(), formEmail.getText(), formPassWord.getText());
 			}
 		});
 		
@@ -104,7 +104,7 @@ public class SignUpPanel extends JPanel{
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				RootFrame.getInstance(new InitPanel());
+				RootFrame.setFrameFor(new InitPanel());
 			}
 		});
 		

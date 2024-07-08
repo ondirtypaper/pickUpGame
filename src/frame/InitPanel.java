@@ -86,7 +86,7 @@ public class InitPanel extends JPanel{
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				RootFrame.getInstance(new SignUpPanel());
+				RootFrame.setFrameFor(new SignUpPanel());
 				
 			}
 		});
@@ -136,12 +136,13 @@ public class InitPanel extends JPanel{
 			public void actionPerformed(ActionEvent e) {
 				System.out.println("InitPanel : " + formEmail.getText() + " Log-in request.");
 				// TODO : Learn about JPasswordField.getPassword()
-				int logInMsg = RootFrame.userData.logInRequest(formEmail.getText(), formPassWord.getText());
-				if(logInMsg == 0) {
+				int logInMsg = RootFrame.data.logInRequest(formEmail.getText(), formPassWord.getText());
+				if(logInMsg >= 0) {
 					// RootFrame.userData.LOG_IN_SUCCESS
 					System.out.println("InitPanel : Log-in Success. " + formEmail.getText());
 					// TODO : RootFrame에 로그인 성공 알림 
-					RootFrame.getInstance(new FirstPagePanel());
+					RootFrame.setFrameFor(new FirstPagePanel());
+					RootFrame.setCurrentUser(logInMsg);
 				}
 				else {
 					System.out.println("InitPanel : Log-in request denied - 로그인 실패 에러코드 : " + logInMsg );
@@ -175,7 +176,7 @@ public class InitPanel extends JPanel{
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				RootFrame.getInstance(new InitPanel());
+				RootFrame.setFrameFor(new InitPanel());
 				
 			}
 		});

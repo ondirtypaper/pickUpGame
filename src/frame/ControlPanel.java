@@ -34,7 +34,7 @@ public class ControlPanel extends JPanel{
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				RootFrame.getInstance(new InitPanel());
+				RootFrame.setFrameFor(new InitPanel());
 				
 			}
 		});
@@ -46,7 +46,7 @@ public class ControlPanel extends JPanel{
 		btn1.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				RootFrame.getInstance(new SubPage3Panel());
+				RootFrame.setFrameFor(new SubPage3Panel());
 			}
 		});
 		
@@ -57,7 +57,7 @@ public class ControlPanel extends JPanel{
 		btn2.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				RootFrame.getInstance(new CommuBegin());
+				RootFrame.setFrameFor(new CommuBegin());
 			}
 		});
 		
@@ -68,7 +68,7 @@ public class ControlPanel extends JPanel{
 		btn3.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				RootFrame.getInstance(new FirstPagePanel());
+				RootFrame.setFrameFor(new FirstPagePanel());
 			}
 		});
 		
@@ -91,7 +91,7 @@ public class ControlPanel extends JPanel{
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				RootFrame.getInstance(new InitPanel());
+				RootFrame.setFrameFor(new InitPanel());
 				
 			}
 		});
