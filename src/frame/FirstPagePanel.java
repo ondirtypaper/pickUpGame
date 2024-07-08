@@ -140,29 +140,45 @@ public class FirstPagePanel extends JPanel implements ActionListener{
 					1));
 		}
 		
+		for(int i=0; i < list.size();i++) {
+			if(i == itemPopCount) {
+				this.setItem(list.get(itemPopCount), itemPopCount);
+				itemPopCount++;
+				break;
+			} else {
+				this.updateItem(list.get(i), i);
+			}
+		}
 		
 		if(list.size() > itemPopCount) {
-			//System.out.println(list.size());
-			this.setItem(list.get(itemPopCount), itemPopCount);
-			itemPopCount++;
+		 //System.out.println(list.size());
+		  this.setItem(list.get(itemPopCount), itemPopCount);
+		  itemPopCount++; 
 		}
+		 
 	}
-
+	public void updateItem(MapItem item, int index) {
+		this.remove(itemLabels[index]);
+		itemLabels[index] = item;
+		itemLabels[index].setName(""+item.id);
+		itemLabels[index].setLocation((int)((item.p.getX() - x) + 300) ,(int)((item.p.getY() - y) + 300));
+		this.add(itemLabels[index]);
+	}
 	public void setItem(MapItem item, int index) {
 		itemLabels[index] = item;
 		itemLabels[index].setName(""+item.id);
 		itemLabels[index].setLocation((int)((item.p.getX() - x) + 300) ,(int)((item.p.getY() - y) + 300));
 		this.add(itemLabels[index]);
-		System.out.println("try to set item" + item.id + " at " + (item.p.getX() - x) + "," + (item.p.getY() - y));
+		//System.out.println("try to set item" + item.id + " at " + (item.p.getX() - x) + "," + (item.p.getY() - y));
 	}
 	
-	public void initForTest() {
-		list = new ArrayList<MapItem>();
-		list.add(new MapItem(1, 20.0, 20.0, 1));
-		list.add(new MapItem(2, -100.0, -100.0, 1));
-		list.add(new MapItem(3, 200.0, 200.0, 2));
-		list.add(new MapItem(4, -175.0, 175.0, 2));
-	}
+//	public void initForTest() {
+//		list = new ArrayList<MapItem>();
+//		list.add(new MapItem(1, 20.0, 20.0, 1));
+//		list.add(new MapItem(2, -100.0, -100.0, 1));
+//		list.add(new MapItem(3, 200.0, 200.0, 2));
+//		list.add(new MapItem(4, -175.0, 175.0, 2));
+//	}
 
 
 }

@@ -20,6 +20,10 @@ public class ActiveUser extends User{
 	public void setCurrentLocation(Position currentLocation) {
 		this.currentLocation = currentLocation;
 	}
+	public void setCurrentLocation(double x, double y) {
+		currentLocation = new Position();
+		currentLocation.setLocation(x, y);
+	}
 
 	public int getFavoriteCourtId() {
 		return favoriteCourtId;
