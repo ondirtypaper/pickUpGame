@@ -150,11 +150,11 @@ public class FirstPagePanel extends JPanel implements ActionListener{
 			}
 		}
 		
-		if(list.size() > itemPopCount) {
-		 //System.out.println(list.size());
-		  this.setItem(list.get(itemPopCount), itemPopCount);
-		  itemPopCount++; 
-		}
+//		if(list.size() > itemPopCount) {
+//		 //System.out.println(list.size());
+//		  this.setItem(list.get(itemPopCount), itemPopCount);
+//		  itemPopCount++; 
+//		}
 		 
 	}
 	public void updateItem(MapItem item, int index) {
