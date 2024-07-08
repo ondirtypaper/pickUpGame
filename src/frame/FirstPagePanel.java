@@ -15,6 +15,9 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 
+import dataManager.ActiveUser;
+import dataManager.Position;
+
 public class FirstPagePanel extends JPanel implements ActionListener{
 
 	/**
@@ -76,7 +79,8 @@ public class FirstPagePanel extends JPanel implements ActionListener{
 		this.add(popUpLabel);
 		this.add(controlPanel);
 		
-		initForTest();
+		//initForTest();
+		list = new ArrayList<MapItem>();
 		timer = new Timer(250, this);
 		timer.start();
 
@@ -116,20 +120,31 @@ public class FirstPagePanel extends JPanel implements ActionListener{
 
 		//System.out.println("Who called action?" + e.getSource());
 		getCenterGPS();
-		findItems(x,y);
+		findItems(RootFrame.cUser.getCurrentLocation());
 		repaint();
-		itemPopCount++;
+		
 	}
 	
-	public void findItems(int x, int y) {
+	public void findItems(Position p) {
 		
 		// updateRequest(x, y); 
 //		for(MapItem item : list) {
 //			this.setItem(item);
 //		}
+		list.removeAll(list);
+		RootFrame.updateActiveUsers();
+		for (ActiveUser au : RootFrame.aroundAU) {
+			list.add(new MapItem(1,
+					au.getCurrentLocation().getX(),
+					au.getCurrentLocation().getY(),
+					1));
+		}
+		
+		
 		if(list.size() > itemPopCount) {
 			//System.out.println(list.size());
 			this.setItem(list.get(itemPopCount), itemPopCount);
+			itemPopCount++;
 		}
 	}
 

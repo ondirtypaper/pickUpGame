@@ -12,6 +12,7 @@ import dataManager.Position;
 import dataManager.User;
 import dataManager.DataManager;
 import java.awt.geom.Point2D;
+import java.util.ArrayList;
 
 public class RootFrame extends JFrame{
 
@@ -25,6 +26,7 @@ public class RootFrame extends JFrame{
 	
 	public static DataManager data;
 	public static ActiveUser cUser;
+	public static ArrayList<ActiveUser> aroundAU;
 	
 	public static final Color MAIN_RED = new Color(0xC85356);
 	public static final Color MAIN_ORANGE = new Color(0xED6B44);
@@ -41,6 +43,8 @@ public class RootFrame extends JFrame{
 		
 		// data 초기화
 		data = new DataManager();
+		// test data 생성
+		data.initForTest();
 		
 		add(e);
 		setResizable(false);
@@ -89,5 +93,8 @@ public class RootFrame extends JFrame{
 	 */
 	public static int getFavoriteCourtId() {
 		return -1;
+	}
+	public static void updateActiveUsers() {
+		aroundAU = data.getAroundActvieUser(getPosition());
 	}
 }

@@ -4,7 +4,7 @@ import java.awt.geom.Point2D;
 
 public class ActiveUser extends User{
 	
-	private Point2D currentLocation;
+	private Position currentLocation;
 	private int favoriteCourtId;
 	
 	public ActiveUser(String name, String email, String passWord) {
@@ -13,11 +13,11 @@ public class ActiveUser extends User{
 		favoriteCourtId = -1;
 	}
 
-	public Point2D getCurrentLocation() {
+	public Position getCurrentLocation() {
 		return currentLocation;
 	}
 
-	public void setCurrentLocation(Point2D currentLocation) {
+	public void setCurrentLocation(Position currentLocation) {
 		this.currentLocation = currentLocation;
 	}
 
