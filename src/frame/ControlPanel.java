@@ -5,6 +5,8 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JPanel;
+
+import community.CommuBegin;
 import subPage3.*;
 
 public class ControlPanel extends JPanel{
@@ -50,13 +52,25 @@ public class ControlPanel extends JPanel{
 		
 		JButton btn2 = new JButton();
 		btn2.setSize(85,50);
-		btn2.setText(" Page 2 ");
+		btn2.setText(" 커뮤니티 ");
 		btn2.setLocation(155,5);
+		btn2.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				RootFrame.getInstance(new CommuBegin());
+			}
+		});
 		
 		JButton btn3 = new JButton();
 		btn3.setSize(85,50);
 		btn3.setText(" Pick Up ");
 		btn3.setLocation(245,5);
+		btn3.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				RootFrame.getInstance(new FirstPagePanel());
+			}
+		});
 		
 		JButton btn4 = new JButton();
 		btn4.setSize(85,50);

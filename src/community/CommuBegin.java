@@ -11,6 +11,9 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import frame.ControlPanel;
+import frame.RootFrame;
+
 public class CommuBegin extends JPanel {
 	
 	public CommuBegin() {
@@ -82,6 +85,14 @@ public class CommuBegin extends JPanel {
 		menu.setSize(600, 100);
 		menu.setLocation(0, 800);
 		menu.setBackground(Color.lightGray);
+		
+		//controlPanel 삽입 by 성배
+		ControlPanel controlPanel = new ControlPanel();
+		controlPanel.setBackground(RootFrame.MAIN_RED);
+		controlPanel.setSize(600,100);
+		controlPanel.setLocation(0,800);
+		
+		add(controlPanel);
 		
 		add(post);
 		add(board);
