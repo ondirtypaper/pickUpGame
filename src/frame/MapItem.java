@@ -5,6 +5,8 @@ import java.awt.event.MouseListener;
 
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
+import javax.swing.JMenuItem;
+import javax.swing.JPopupMenu;
 
 import dataManager.Position;
 
@@ -32,10 +34,9 @@ public class MapItem extends JLabel implements MouseListener{
 	
 	@Override
 	public void mouseClicked(MouseEvent e) {
-		// TODO Auto-generated method stub
-		System.out.println("user click the map item" + e.getComponent().getName());
 		
-		//this.setIcon(getDisabledIcon());
+		System.out.println("user click the map item" + e.getComponent().getName());
+		FirstPagePanel.setPopUpLabel(this);
 	}
 
 	@Override

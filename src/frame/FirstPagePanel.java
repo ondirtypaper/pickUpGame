@@ -25,7 +25,7 @@ public class FirstPagePanel extends JPanel implements ActionListener{
 	 */
 	private static final long serialVersionUID = 1L;
 	JPanel mapPanel;
-	JLabel popUpLabel;
+	static JLabel popUpLabel;
 	JLabel userLabel;
 	ControlPanel controlPanel;
 	//ImageIcon ballIcon = new ImageIcon("res/justABall.png");
@@ -40,7 +40,8 @@ public class FirstPagePanel extends JPanel implements ActionListener{
 	int itemPopCount = 0;
 
 	ArrayList<MapItem> list;
-	MapItem[] itemLabels = new MapItem[10];
+	//MapItem[] itemLabels = new MapItem[10];
+	JLabel[] itemLabel = new JLabel[10];
 	
 
 	FirstPagePanel() {
@@ -88,9 +89,9 @@ public class FirstPagePanel extends JPanel implements ActionListener{
 
 	private void getCenterGPS() {
 		// 사용자의 현재 위치를 기기로부터 가져오는 method
-		x = 0;
-		y = 0;
-		// 사용자 현재 위치 [0,0]으로 가정
+		Position p = RootFrame.cUser.getCurrentLocation();
+		x = Math.round((float)p.getX());
+		y = Math.round((float)p.getY());
 	}
 
 	public void paintComponent(Graphics g) {
@@ -158,17 +159,16 @@ public class FirstPagePanel extends JPanel implements ActionListener{
 		 
 	}
 	public void updateItem(MapItem item, int index) {
-		this.remove(itemLabels[index]);
-		itemLabels[index] = item;
-		itemLabels[index].setName(""+item.id);
-		itemLabels[index].setLocation((int)((item.p.getX() - x) + 300) ,(int)((item.p.getY() - y) + 300));
-		this.add(itemLabels[index]);
+		itemLabel[index].setLocation((int)((item.p.getX() - x) + 300) ,(int)((item.p.getY() - y) + 300));
+		itemLabel[index].revalidate();
+		itemLabel[index].repaint();
 	}
 	public void setItem(MapItem item, int index) {
-		itemLabels[index] = item;
-		itemLabels[index].setName(""+item.id);
-		itemLabels[index].setLocation((int)((item.p.getX() - x) + 300) ,(int)((item.p.getY() - y) + 300));
-		this.add(itemLabels[index]);
+		itemLabel[index] = item;
+		itemLabel[index].setName(""+item.id);
+		
+		itemLabel[index].setLocation((int)((item.p.getX() - x) + 300) ,(int)((item.p.getY() - y) + 300));
+		this.add(itemLabel[index]);
 		//System.out.println("try to set item" + item.id + " at " + (item.p.getX() - x) + "," + (item.p.getY() - y));
 	}
 	
@@ -180,5 +180,8 @@ public class FirstPagePanel extends JPanel implements ActionListener{
 //		list.add(new MapItem(4, -175.0, 175.0, 2));
 //	}
 
-
+	public static void setPopUpLabel(MapItem i) {
+		//System.out.println(i.getName());
+		popUpLabel.setText(" !!" + i.id +"를 사용자가 클릭");
+	}
 }
