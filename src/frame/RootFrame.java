@@ -97,4 +97,15 @@ public class RootFrame extends JFrame{
 	public static void updateActiveUsers() {
 		aroundAU = data.getAroundActvieUser(getPosition());
 	}
+	
+	/**
+	 * 
+	 */
+	public static ActiveUser getActiveUser(String email) {
+		ActiveUser rUser = null;
+		for (ActiveUser au : aroundAU) {
+			if(au.getEmail() == email) rUser = au;
+		}
+		return rUser;
+	}
 }

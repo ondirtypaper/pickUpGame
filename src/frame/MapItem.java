@@ -15,12 +15,15 @@ public class MapItem extends JLabel implements MouseListener{
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	int id;
+	public static final int USER_TYPE = 1;
+	public static final int COURT_TYPE = 2;
+	
+	String id;
 	int itemType;
 	ImageIcon ballIcon = new ImageIcon("res/justABall.png");
 	Position p;
 
-	public MapItem(int id, double x, double y, int itemType) {
+	public MapItem(String id, double x, double y, int itemType) {
 		this.id = id;
 		//this.x = x;
 		//this.y = y;

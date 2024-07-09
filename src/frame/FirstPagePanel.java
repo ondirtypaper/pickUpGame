@@ -10,9 +10,12 @@ import java.awt.event.ActionListener;
 
 import java.util.ArrayList;
 
+import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JProgressBar;
 import javax.swing.Timer;
 
 import dataManager.ActiveUser;
@@ -26,6 +29,7 @@ public class FirstPagePanel extends JPanel implements ActionListener{
 	private static final long serialVersionUID = 1L;
 	JPanel mapPanel;
 	static JLabel popUpLabel;
+	static JLabel innerLabel;
 	JLabel userLabel;
 	ControlPanel controlPanel;
 	//ImageIcon ballIcon = new ImageIcon("res/justABall.png");
@@ -69,6 +73,15 @@ public class FirstPagePanel extends JPanel implements ActionListener{
 		popUpLabel.setOpaque(true);
 		popUpLabel.setSize(600, 200);
 		popUpLabel.setLocation(0, 600);
+		
+		innerLabel = new JLabel();
+		innerLabel.setSize(560, 180);
+		innerLabel.setLocation(10, 10);
+		innerLabel.setBackground(Color.WHITE);
+		innerLabel.setOpaque(true);
+		innerLabel.setVisible(false);
+		
+		popUpLabel.add(innerLabel);
 
 		controlPanel = new ControlPanel();
 		controlPanel.setBackground(RootFrame.MAIN_RED);
@@ -135,10 +148,10 @@ public class FirstPagePanel extends JPanel implements ActionListener{
 		list.removeAll(list);
 		RootFrame.updateActiveUsers();
 		for (ActiveUser au : RootFrame.aroundAU) {
-			list.add(new MapItem(1,
+			list.add(new MapItem(au.getEmail(),
 					au.getCurrentLocation().getX(),
 					au.getCurrentLocation().getY(),
-					1));
+					MapItem.USER_TYPE));
 		}
 		
 		for(int i=0; i < list.size();i++) {
@@ -182,6 +195,39 @@ public class FirstPagePanel extends JPanel implements ActionListener{
 
 	public static void setPopUpLabel(MapItem i) {
 		//System.out.println(i.getName());
-		popUpLabel.setText(" !!" + i.id +"를 사용자가 클릭");
+		//popUpLabel.setText(" !!" + i.id +"를 사용자가 클릭");
+		popUpLabel.setText("");
+		if(RootFrame.getActiveUser(i.id) != null) {
+			innerLabel.setText("<html> " + RootFrame.getActiveUser(i.id).getName() + "님이 주변에 있습니다. <br> ** 코트에서 매치를 요청하시겠습니까?</html>");
+			innerLabel.setHorizontalAlignment(JLabel.CENTER);
+			JButton btnSendMsg = new JButton("요청");
+			btnSendMsg.setSize(100,40);
+			btnSendMsg.setLocation(230,125);
+			btnSendMsg.setFocusable(false);
+			btnSendMsg.addActionListener(new ActionListener() {
+				
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					// TODO Auto-generated method stub
+					innerLabel.setText("<html> " + RootFrame.getActiveUser(i.id).getName() + "님의 수락을 기다리고 있습니다. <br> ** 코트</html>");
+					getProgressBar();
+				}
+			});
+			innerLabel.add(btnSendMsg);
+			
+			innerLabel.setVisible(true);
+		}
+		popUpLabel.repaint();
+		
+	}
+	
+	public static void getProgressBar() {
+		
+		FirstProBar pb = new FirstProBar();
+		
+		innerLabel.removeAll();
+		
+		innerLabel.add(pb);
+		
 	}
 }
