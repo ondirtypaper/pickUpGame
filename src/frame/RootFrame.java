@@ -6,6 +6,8 @@ import java.awt.Color;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.UIManager;
+import javax.swing.UnsupportedLookAndFeelException;
 
 import dataManager.ActiveUser;
 import dataManager.Position;
@@ -13,6 +15,9 @@ import dataManager.User;
 import dataManager.DataManager;
 import java.awt.geom.Point2D;
 import java.util.ArrayList;
+
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class RootFrame extends JFrame{
 
@@ -34,6 +39,14 @@ public class RootFrame extends JFrame{
 	
 	private RootFrame(JPanel e) {
 		
+		/**
+		 * L&F ?
+		 */
+		try {
+		      UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+		} catch (ClassNotFoundException | InstantiationException | IllegalAccessException | UnsupportedLookAndFeelException ex) {
+		      Logger.getLogger(RootFrame.class.getName()).log(Level.SEVERE, null, ex);
+		}
 		
 		setTitle("Pick A Game");
 		setLayout(null);
