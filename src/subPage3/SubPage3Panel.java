@@ -59,10 +59,15 @@ public class SubPage3Panel extends JPanel{
 		
 		//위치 버튼
 		PickupGameBase base = new PickupGameBase();// 좌표 불러오기용
-		add(new SubPage3_Locationbutton(base.getPointCourt1Hong(),new ImageIcon("res/locationbutton_S.png")));
-		add(new SubPage3_Locationbutton(base.getPointCourt2Sung(),new ImageIcon("res/locationbutton_S.png")));
-		add(new SubPage3_Locationbutton(base.getPointCourt3dong(),new ImageIcon("res/locationbutton_S.png")));
-		add(new SubPage3_Locationbutton(base.getPointCourt4Catholic(),new ImageIcon("res/locationbutton_S.png")));
+//		add(new SubPage3_Locationbutton(base.getPointCourt1Hong(),new ImageIcon("res/locationbutton_S.png")));
+//		add(new SubPage3_Locationbutton(base.getPointCourt2Sung(),new ImageIcon("res/locationbutton_S.png")));
+//		add(new SubPage3_Locationbutton(base.getPointCourt3dong(),new ImageIcon("res/locationbutton_S.png")));
+//		add(new SubPage3_Locationbutton(base.getPointCourt4Catholic(),new ImageIcon("res/locationbutton_S.png")));
+		
+		add(new SubPage3_Locationbutton(base.getPointCourt1Hong()));
+		add(new SubPage3_Locationbutton(base.getPointCourt2Sung()));
+		add(new SubPage3_Locationbutton(base.getPointCourt3dong()));
+		add(new SubPage3_Locationbutton(base.getPointCourt4Catholic()));
 		
 		//위치 클릭시 들어갈 패널
 		add(new CourtPanel(base.pointCourt1Hong));

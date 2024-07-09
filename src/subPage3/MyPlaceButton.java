@@ -1,25 +1,20 @@
 package subPage3;
 
-import java.awt.*;
+import java.awt.Point;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
-import javax.swing.*;
-import javax.swing.border.Border;
-import javax.swing.border.EmptyBorder;
-import javax.swing.border.LineBorder;
-import javax.swing.plaf.BorderUIResource.EmptyBorderUIResource;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JOptionPane;
 
-public class SubPage3_Locationbutton extends JButton {
+public class MyPlaceButton extends JButton {
 
-	Point click = new Point();// xy담는 포인트 좌표
-	// 위치 버튼 생성자
-
-	public SubPage3_Locationbutton(Point p) {
-		ImageIcon icon = new ImageIcon("res/locationbutton_4040.png");
+	
+	public MyPlaceButton(Point p) {
+		ImageIcon icon = new ImageIcon("res/MyLocateButton_4040.png");
 		setIcon(icon);
 		setSize(40, 40);
 		setLayout(null);
@@ -30,7 +25,11 @@ public class SubPage3_Locationbutton extends JButton {
 		setBorderPainted(false);
 		setContentAreaFilled(false);
 		setFocusPainted(false);
-
+		
+		
+		
+		
+		
 		// 마우스 올렸을때 커지기
 		addMouseListener(new MouseListener() {
 
@@ -59,29 +58,32 @@ public class SubPage3_Locationbutton extends JButton {
 				// 마우스 올리면 아이콘 커짐
 				setLocation((int) p.getX() - 10, (int) p.getY() - 10);
 				setSize(60, 60);
-				setIcon(new ImageIcon("res/locationbutton_6060.png"));
+				setIcon(new ImageIcon("res/MyLocateButton_6060.png"));
 
 			}
 
 			@Override
 			public void mouseClicked(MouseEvent e) {
-
-				new CourtInfoFrame(SubPage3Frame.temp, e.getX(), e.getY());
-				System.out.println(SubPage3MainPanel.x);
+				
 			}
 		});
 
-//		// 위치버튼 클릭시 코트정보 나오는 액션리스너
-//		addActionListener(new ActionListener() {
-//
-//			@Override
-//			public void actionPerformed(ActionEvent e) {
-//				new CourtFrame(SubPage3Frame.temp, x, y);
-//
-//			}
-//		});
+		addActionListener(new ActionListener() {
+			//한번만 실행되게 만들기
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				new MyPlaceFrame();
+			}
+		});
+		// 
+		
 		
 
 	}
-
+		
+		
+		
+	
+	
+	
 }

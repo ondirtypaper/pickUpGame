@@ -22,10 +22,10 @@ public class Temporary_Mousepoint extends JFrame {
 		
 	}
 	
-	public static void main(String[] args) {
-		
-		new SubPage3Frame(new SubPage3Panel());
-		
-	}
+//	public static void main(String[] args) {
+//		
+//		new SubPage3Frame(new SubPage3Panel());
+//		
+//	}
 	
 }
