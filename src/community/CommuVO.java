@@ -4,7 +4,6 @@ public class CommuVO {
 	
 	private String title;
 	private String deTail;
-	private String id;
 	
 	public String getTitle() {
 		return title;
@@ -18,19 +17,13 @@ public class CommuVO {
 	public void setDeTail(String deTail) {
 		this.deTail = deTail;
 	}
-	public String getId() {
-		return id;
-	}
-	public void setId(String id) {
-		this.id = id;
-	}
+
 	
 	
-	public CommuVO(String title, String deTail, String id) {
+	public CommuVO(String title, String deTail) {
 		
 		this.title = title;
 		this.deTail = deTail;
-		this.id = id;
 	}
 	
 	
