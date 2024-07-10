@@ -49,6 +49,9 @@ public class FirstPagePanel extends JPanel implements ActionListener{
 	
 
 	FirstPagePanel() {
+		
+		
+		
 		setBackground(Color.white);
 		setLayout(null);
 		setSize(600, 900);

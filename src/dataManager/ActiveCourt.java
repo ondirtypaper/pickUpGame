@@ -9,5 +9,14 @@ public class ActiveCourt extends Court{
 		// TODO Auto-generated constructor stub
 		this.userNum = 0;
 	}
+	
+	public ActiveCourt(Court c) {
+		super(c.id, c.name, c.p);
+		this.ringNum = c.ringNum;
+		this.texture = c.texture;
+		this.hasParking = c.hasParking;
+		this.hasLight = c.hasLight;
+		this.hasToilet = c.hasToilet;
+	}
 
 }

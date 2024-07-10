@@ -14,6 +14,8 @@ import dataManager.ActiveUser;
 import dataManager.Position;
 import dataManager.User;
 import dataManager.DataManager;
+import dataManager.MyPlace;
+
 import java.awt.geom.Point2D;
 import java.util.ArrayList;
 
@@ -34,6 +36,7 @@ public class RootFrame extends JFrame{
 	public static ActiveUser cUser;
 	public static ArrayList<ActiveUser> aroundAU;
 	public static ArrayList<ActiveCourt> aroundC;
+	public static ArrayList<MyPlace> myPlaces;
 	
 	public static final Color MAIN_RED = new Color(0xC85356);
 	public static final Color MAIN_ORANGE = new Color(0xED6B44);
@@ -79,7 +82,10 @@ public class RootFrame extends JFrame{
 		instance.revalidate();
 		instance.repaint();
 	}
-	
+	/**
+	 * 현재 사용자가 확정 되었을때 호출하는 초기화 method
+	 * @param index
+	 */
 	public static void setCurrentUser(int index) {
 		
 		User u = data.getRegUser(index);
@@ -89,6 +95,10 @@ public class RootFrame extends JFrame{
 		cUser.setFavoriteCourtId(getFavoriteCourtId());
 		
 		System.out.println("RootFrame : Current User > " + cUser.getName());
+		
+		updateMyPlace();
+		updateActiveCourt();
+		updateActiveUsers();
 	}
 	/**
 	 * Test를 위해 사용자의 Position을 0,0으로 가정
@@ -118,7 +128,9 @@ public class RootFrame extends JFrame{
 	public static void updateActiveCourt() {
 		aroundC = data.getAroundCourt(getPosition());
 	}
-	
+	public static void updateMyPlace() {
+		myPlaces = data.getMyPlace(cUser.getEmail());
+	}
 	/**
 	 * email과 일치하는 ActiveUser return
 	 * @param user email

@@ -27,21 +27,24 @@ public class DataManager {
 	
 	public static final String USER_DATA_BASE = "data/user.data";
 	public static final String COURT_DATA_BASE = "data/court.data";
+	public static final String MY_PLACE_DATA_BASE = "data/myPlace.data";
 	
 	ArrayList<User> regList;
 	ArrayList<Court> courtList;
 	ArrayList<ActiveUser> activeList;
+	ArrayList<MyPlace> myPlaceList;
 	
 	
 	
 	public DataManager(){
 		regList = new ArrayList<User>();
 		initRegList();
-		for (User u : regList) {
-			System.out.println(u.getEmail() + ", " + u.getName() + ", " + u.getPassWord());
-		}
+
 		courtList = new ArrayList<Court>();
 		initCourtList();
+		
+		myPlaceList = new ArrayList<MyPlace>();
+		initMyPlaceList();
 		
 		activeList = new ArrayList<ActiveUser>();
 	}
@@ -242,7 +245,7 @@ public class DataManager {
 		for(Court c : courtList) {
 			// Wrapping Court to ActiveCourt 
 			// TODO : Data 가공 부분 추가
-			ActiveCourt a = new ActiveCourt(c.getId(), c.getName(), c.getP());
+			ActiveCourt a = new ActiveCourt(c);
 			rList.add(a);
 		}
 		return rList;
@@ -284,6 +287,48 @@ public class DataManager {
 		
 	}
 	/**
+	 * DataBase 로부터 myPlace 정보 전체를 mapping 하는 method
+	 */
+	private void initMyPlaceList() {
+		File f = new File(MY_PLACE_DATA_BASE);
+		Object data = new Object();
+		try(FileInputStream fis = new FileInputStream(f);
+				ObjectInputStream ois = new ObjectInputStream(fis)){
+			System.out.println("dataManager : " + f.toString() + "file found successfully");
+			while(true) {
+				try {
+					data = ois.readObject();
+					
+					MyPlace m = (MyPlace)data;
+					myPlaceList.add(m);
+				} catch (EOFException e) {
+					ois.close();
+					break;
+				}
+			}
+		} catch (IOException | ClassNotFoundException e) {
+			e.printStackTrace();
+		}
+		
+	}
+	/**
+	 * write file myPlace.data
+	 * 
+	 */
+	private void saveMyPlaceList() {
+		File f = new File(MY_PLACE_DATA_BASE);
+		try (FileOutputStream fos = new FileOutputStream(f, false);
+				ObjectOutputStream oos = new ObjectOutputStream(fos)){
+			for(MyPlace m : myPlaceList) {
+				oos.writeObject(m);
+			}
+				oos.flush();
+		} catch (IOException e) {
+			e.printStackTrace();
+			System.out.println("file out failed");
+		}
+	}
+	/**
 	 * write file court.data
 	 */
 	private void saveCourtList() {
@@ -300,7 +345,11 @@ public class DataManager {
 		}
 	}
 	
-	
+	/**
+	 * courtList 에 새로운 Court를 추가 
+	 * @param c
+	 * @return
+	 */
 	public boolean addCourt(Court c) {
 		for(int i = 0; i < courtList.size() ; i++) {
 			if(courtList.get(i).getId() == c.id) {
@@ -311,5 +360,34 @@ public class DataManager {
 		courtList.add(c);
 		saveCourtList();
 		return true;
+	}
+	/**
+	 * myPlace 추가
+	 * @param MyPlace m
+	 */
+	public boolean addMyPlace(MyPlace m) {
+		for(int i = 0; i < myPlaceList.size() ; i++) {
+			if((myPlaceList.get(i).getUserEmail() == m.userEmail) && (myPlaceList.get(i).getId() == m.id)) {
+				System.out.println("dataManager.addMyPlace : 추가 요청 거부 - 중복 email && id ");
+				return false;
+			}
+		}
+		myPlaceList.add(m);
+		saveMyPlaceList();
+		return true;
+	}
+	/**
+	 * User email과 일치하는 MyPlace list return
+	 * @param email
+	 * @return ArrayList<MyPlace>
+	 */
+	public ArrayList<MyPlace> getMyPlace(String email){
+		ArrayList<MyPlace> rList = new ArrayList<MyPlace>();
+		for(int i = 0; i < myPlaceList.size() ; i++) {
+			if(myPlaceList.get(i).getUserEmail() == email) {
+				rList.add(myPlaceList.get(i));
+			}
+		}
+		return rList;
 	}
 }
