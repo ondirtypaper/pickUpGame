@@ -56,7 +56,7 @@ public class CommuBegin extends JPanel {
 	            postPanel.addMouseListener(new MouseListener() {
 	                @Override
 	                public void mouseClicked(MouseEvent e) {
-	                    JOptionPane.showMessageDialog(null, i.getDeTail());
+	                	RootFrame.setFrameFor(new PostDetail(i));
 	                }
 
 	                @Override
@@ -84,15 +84,19 @@ public class CommuBegin extends JPanel {
 	        board.setLocation(0, 0);
 	        board.setBackground(Color.GRAY);
 
-	        JPanel menu = new JPanel();
-	        menu.setSize(600, 100);
-	        menu.setLocation(0, 800);
-	        menu.setBackground(Color.lightGray);
 
-	        add(post);
+	        //controlPanel 삽입 by 성배
+      		ControlPanel controlPanel = new ControlPanel();
+      		controlPanel.setBackground(RootFrame.MAIN_RED);
+      		controlPanel.setSize(600,100);
+      		controlPanel.setLocation(0,800);
+      		
+      		add(post);
 	        add(board);
-	        add(menu);
-
+	        add(controlPanel);
+	        
+	        
+	        
 	        // PostMake로 가는 버튼
 	        JButton bts = new JButton("새 글 쓰기");
 	        bts.setBackground(Color.yellow);
@@ -109,27 +113,21 @@ public class CommuBegin extends JPanel {
 					
 				}
 			});
-	      //controlPanel 삽입 by 성배
-      		ControlPanel controlPanel = new ControlPanel();
-      		controlPanel.setBackground(RootFrame.MAIN_RED);
-      		controlPanel.setSize(600,100);
-      		controlPanel.setLocation(0,800);
-      		
-      		add(controlPanel);    
+	            
 	   
 	       
 	    }
 
-//	    public static void main(String[] args) {
-//	        JFrame frame = new JFrame("Community Board");
-//	        frame.setSize(600, 900);
-//	        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-//	        frame.add(new CommuBegin());
-//	        frame.setVisible(true);
-//	   
-//	    
-//	    
-//	    
-//	    } 
+	    public static void main(String[] args) {
+	        JFrame frame = new JFrame("Community Board");
+	        frame.setSize(600, 900);
+	        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	        frame.add(new CommuBegin());
+	        frame.setVisible(true);
+	   
+	    
+	    
+	    
+	    } 
 	}
 

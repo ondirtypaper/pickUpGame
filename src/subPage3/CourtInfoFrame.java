@@ -19,11 +19,11 @@ public class CourtInfoFrame extends JFrame {
 	int nowcourtNum; // 현재 코트 인원 수
 	
 	
-	public CourtInfoFrame(SubPage3Frame temp,int x,int y) {
-		SubPage3Frame.temp=temp;
-		
-		setLocation(x, y);
+	public CourtInfoFrame(Point p) {
 		setSize(400, 200);
+		Point point=new Point();
+		point.setLocation(p.getX()+675, p.getY()+110);
+		setLocation(point);
 		setLayout(null);
 		setBackground(Color.black);
 		setVisible(true);
@@ -43,9 +43,11 @@ public class CourtInfoFrame extends JFrame {
 		add(courtName, BorderLayout.NORTH);
 
 		// 코트 사진 이미지 버튼
-		ImageIcon cImg = new ImageIcon("res/court3_final.png");
-		JButton courtImg = new JButton("사진 더 보기", cImg);
-		courtImg.setSize(140, 113);
+		ImageIcon cImg = new ImageIcon("res/CourtDetailImage1_150x112.png");
+		JButton courtImg = new JButton();
+		courtImg.setIcon(cImg);
+		courtImg.setMargin(new Insets(0, 0, 0, 0));
+		courtImg.setSize(150, 112);
 		courtImg.setLocation(10, 25);
 		courtImg.setVerticalTextPosition(JButton.BOTTOM);
 		courtImg.addActionListener(new ActionListener() {
@@ -54,7 +56,7 @@ public class CourtInfoFrame extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				// 사진 더보기 구현
 				dispose();
-				RootFrame.setFrameFor(new MoreImgPanel());
+				RootFrame.setFrameFor(new CourtDetailImagePanel());
 			}
 		});
 		add(courtImg);
@@ -74,7 +76,7 @@ public class CourtInfoFrame extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				// 사진 더보기 구현
 				dispose(); //코트프레임 꺼지기
-				RootFrame.setFrameFor(new MoreImgPanel());
+				RootFrame.setFrameFor(new CourtDetailImagePanel());
 			}
 		});
 

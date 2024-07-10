@@ -31,17 +31,17 @@ public class CourtDetailmageButton extends JButton {
 				ImageIcon icon6 = new ImageIcon("res/CourtDetailImage6_600x337.png");
 				ImageIcon icon7 = new ImageIcon("res/CourtDetailImage7_600x337.png");
 				if (str.equals("이미지2")) {
-					MoreImgPanel.labelChange(icon2);
+					CourtDetailImagePanel.labelChange(icon2);
 				} else if (str.equals("이미지3")) {
-					MoreImgPanel.labelChange(icon3);
+					CourtDetailImagePanel.labelChange(icon3);
 				} else if (str.equals("이미지4")) {
-					MoreImgPanel.labelChange(icon4);
+					CourtDetailImagePanel.labelChange(icon4);
 				} else if (str.equals("이미지5")) {
-					MoreImgPanel.labelChange(icon5);
+					CourtDetailImagePanel.labelChange(icon5);
 				} else if (str.equals("이미지6")) {
-					MoreImgPanel.labelChange(icon6);
+					CourtDetailImagePanel.labelChange(icon6);
 				} else if (str.equals("이미지7")) {
-					MoreImgPanel.labelChange(icon7);
+					CourtDetailImagePanel.labelChange(icon7);
 				}
 				
 				

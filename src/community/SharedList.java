@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 
+
 public class SharedList {
 
     private static List<CommuVO> commuList = new ArrayList<>();
@@ -20,6 +21,10 @@ public class SharedList {
 	public static void setCommuList(List<CommuVO> commuList) {
 		SharedList.commuList = commuList;
 	}
-    
+	static {
+		commuList.add(new CommuVO("첫 번째 게시글", "첫 번째 게시글의 내용입니다."));
+		commuList.add(new CommuVO("두 번째 게시글", "두 번째 게시글의 내용입니다."));
+		// 필요한 만큼 초기 데이터를 추가
+		}
 }
 

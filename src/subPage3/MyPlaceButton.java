@@ -3,6 +3,7 @@ package subPage3;
 import java.awt.Point;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
@@ -31,20 +32,7 @@ public class MyPlaceButton extends JButton {
 		
 		
 		// 마우스 올렸을때 커지기
-		addMouseListener(new MouseListener() {
-
-			@Override
-			public void mouseReleased(MouseEvent e) {
-				// TODO Auto-generated method stub
-
-			}
-
-			@Override
-			public void mousePressed(MouseEvent e) {
-				// TODO Auto-generated method stub
-
-			}
-
+		addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseExited(MouseEvent e) {
 				// 마우스 떼면 다시 아이콘 작아짐
@@ -72,9 +60,10 @@ public class MyPlaceButton extends JButton {
 			//한번만 실행되게 만들기
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				new MyPlaceFrame();
+				new MyPlaceFrame(p);
 			}
 		});
+		
 		// 
 		
 		
