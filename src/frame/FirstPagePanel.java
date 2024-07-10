@@ -141,7 +141,7 @@ public class FirstPagePanel extends JPanel implements ActionListener{
 	
 	public void findItems(Position p) {
 		
-		// updateRequest(x, y); 
+		// updateRequest(x, y);  
 //		for(MapItem item : list) {
 //			this.setItem(item);
 //		}

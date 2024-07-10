@@ -9,6 +9,7 @@ import javax.swing.JPanel;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 
+import dataManager.ActiveCourt;
 import dataManager.ActiveUser;
 import dataManager.Position;
 import dataManager.User;
@@ -32,6 +33,7 @@ public class RootFrame extends JFrame{
 	public static DataManager data;
 	public static ActiveUser cUser;
 	public static ArrayList<ActiveUser> aroundAU;
+	public static ArrayList<ActiveCourt> aroundC;
 	
 	public static final Color MAIN_RED = new Color(0xC85356);
 	public static final Color MAIN_ORANGE = new Color(0xED6B44);
@@ -110,9 +112,16 @@ public class RootFrame extends JFrame{
 	public static void updateActiveUsers() {
 		aroundAU = data.getAroundActvieUser(getPosition());
 	}
+	/**
+	 * 사용자 현재 주변의 경기장정보를 업데이트 하는 method
+	 */
+	public static void updateActiveCourt() {
+		aroundC = data.getAroundCourt(getPosition());
+	}
 	
 	/**
-	 * 
+	 * email과 일치하는 ActiveUser return
+	 * @param user email
 	 */
 	public static ActiveUser getActiveUser(String email) {
 		ActiveUser rUser = null;

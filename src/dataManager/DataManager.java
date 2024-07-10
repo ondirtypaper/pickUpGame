@@ -26,8 +26,10 @@ public class DataManager {
 	public static final int LOG_IN_CANT_FIND_DB = -3;
 	
 	public static final String USER_DATA_BASE = "data/user.data";
+	public static final String COURT_DATA_BASE = "data/court.data";
 	
 	ArrayList<User> regList;
+	ArrayList<Court> courtList;
 	ArrayList<ActiveUser> activeList;
 	
 	
@@ -38,6 +40,9 @@ public class DataManager {
 		for (User u : regList) {
 			System.out.println(u.getEmail() + ", " + u.getName() + ", " + u.getPassWord());
 		}
+		courtList = new ArrayList<Court>();
+		initCourtList();
+		
 		activeList = new ArrayList<ActiveUser>();
 	}
 	public int logInRequest(String email, String passWord) {
@@ -109,12 +114,12 @@ public class DataManager {
 				ObjectOutputStream oos = new ObjectOutputStream(fos)){
 			for(User u : regList) {
 				oos.writeObject(u);
-			}
+				}
 				oos.flush();
-			} catch (IOException e) {
-				e.printStackTrace();
-				System.out.println("file out failed");
-			}
+		} catch (IOException e) {
+			e.printStackTrace();
+			System.out.println("file out failed");
+		}
 	}
 	/**
 	 * 현재 가입된 회원 전체를 파일로부터 불러와 regList에 mapping하는 method
@@ -214,7 +219,6 @@ public class DataManager {
 			u.setFavoriteCourtId(-1);
 			activeList.add(u);
 			//System.out.println("dataManeger : " + activeList.get(i).getCurrentLocation().getX());
-			
 		}
 	}
 	/**
@@ -233,6 +237,16 @@ public class DataManager {
 		}
 		return rList;
 	}
+	public ArrayList<ActiveCourt> getAroundCourt(Position p){
+		ArrayList<ActiveCourt> rList = new ArrayList<ActiveCourt>();
+		for(Court c : courtList) {
+			// Wrapping Court to ActiveCourt 
+			// TODO : Data 가공 부분 추가
+			ActiveCourt a = new ActiveCourt(c.getId(), c.getName(), c.getP());
+			rList.add(a);
+		}
+		return rList;
+	}
 	/**
 	 * 
 	 */
@@ -243,5 +257,59 @@ public class DataManager {
 		double y = au.getCurrentLocation().getY();
 		
 		au.setCurrentLocation(x + (r.nextDouble()-0.5)*10, y + (r.nextDouble()-0.5)*10 );
+	}
+	/**
+	 * DataBase (File)로부터 코트 정보를 mapping하는 method
+	 */
+	private void initCourtList() {
+		File f = new File(COURT_DATA_BASE);
+		Object data = new Object();
+		try(FileInputStream fis = new FileInputStream(f);
+				ObjectInputStream ois = new ObjectInputStream(fis)){
+			System.out.println("dataManager : " + f.toString() + "file found successfully");
+			while(true) {
+				try {
+					data = ois.readObject();
+					
+					Court c = (Court)data;
+					if(courtList.add(c)) System.out.println("dataManager : " + c.getId() + " data is just read from file.");
+				} catch (EOFException e) {
+					ois.close();
+					break;
+				}
+			}
+		} catch (IOException | ClassNotFoundException e) {
+			e.printStackTrace();
+		}
+		
+	}
+	/**
+	 * write file court.data
+	 */
+	private void saveCourtList() {
+		File f = new File(COURT_DATA_BASE);
+		try (FileOutputStream fos = new FileOutputStream(f, false);
+				ObjectOutputStream oos = new ObjectOutputStream(fos)){
+			for(Court c : courtList) {
+				oos.writeObject(c);
+			}
+				oos.flush();
+		} catch (IOException e) {
+			e.printStackTrace();
+			System.out.println("file out failed");
+		}
+	}
+	
+	
+	public boolean addCourt(Court c) {
+		for(int i = 0; i < courtList.size() ; i++) {
+			if(courtList.get(i).getId() == c.id) {
+				System.out.println("dataManager.addCourt : 코트 추가 요청 거부 - 중복 id ");
+				return false;
+			}
+		}
+		courtList.add(c);
+		saveCourtList();
+		return true;
 	}
 }
