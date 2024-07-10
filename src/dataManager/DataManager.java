@@ -1,6 +1,13 @@
 package dataManager;
 
 import java.awt.geom.Point2D;
+import java.io.EOFException;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.util.regex.*;
 import java.util.ArrayList;
 import java.util.Random;
@@ -17,6 +24,8 @@ public class DataManager {
 	public static final int LOG_IN_WRONG_EMAIL = -2;
 	public static final int LOG_IN_CANT_FIND_DB = -3;
 	
+	public static final String USER_DATA_BASE = "data/user.data";
+	
 	ArrayList<User> regList;
 	ArrayList<ActiveUser> activeList;
 	
@@ -24,6 +33,10 @@ public class DataManager {
 	
 	public DataManager(){
 		regList = new ArrayList<User>();
+		initRegList();
+		for (User u : regList) {
+			System.out.println(u.getEmail() + ", " + u.getName() + ", " + u.getPassWord());
+		}
 		activeList = new ArrayList<ActiveUser>();
 	}
 	public int logInRequest(String email, String passWord) {
@@ -79,8 +92,55 @@ public class DataManager {
 		for(User u : regList) {
 			System.out.println("dataBase : " + u.getEmail());
 		}
+		/**
+		 * File out
+		 */
+		saveRegList();
+		
 		return true;
 	}
+	/**
+	 * 현재 가입된 회원 전체를 파일 user.data에 mapping하는 method
+	 */
+	public void saveRegList() {
+		File f = new File(USER_DATA_BASE);
+		try (FileOutputStream fos = new FileOutputStream(f, false);
+				ObjectOutputStream oos = new ObjectOutputStream(fos)){
+			for(User u : regList) {
+				oos.writeObject(u);
+			}
+				oos.flush();
+			} catch (IOException e) {
+				e.printStackTrace();
+				System.out.println("file out failed");
+			}
+	}
+	/**
+	 * 현재 가입된 회원 전체를 파일로부터 불러와 regList에 mapping하는 method
+	 */
+	public void initRegList() {
+		File f = new File(USER_DATA_BASE);
+		Object data = new Object();
+		try(FileInputStream fis = new FileInputStream(f);
+				ObjectInputStream ois = new ObjectInputStream(fis)){
+			System.out.println("dataManager : " + f.toString() + "file found successfully");
+			while(true) {
+				try {
+					data = ois.readObject();
+					
+					User u = (User)data;
+					if(regList.add(u)) System.out.println("dataManager : " + u.getEmail() + " data is just read from file.");
+				} catch (EOFException e) {
+					ois.close();
+					break;
+				}
+			}
+		} catch (IOException | ClassNotFoundException e) {
+			e.printStackTrace();
+		}
+		
+	}
+	
 	/**
 	 * 이메일 유효성 판단을 위한 method
 	 * @param email

@@ -40,7 +40,7 @@ public class RootFrame extends JFrame{
 	private RootFrame(JPanel e) {
 		
 		/**
-		 * L&F ?
+		 * Set Look and Feel
 		 */
 		try {
 		      UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
