@@ -10,6 +10,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.util.ArrayList;
 
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
@@ -19,13 +20,14 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.RootPaneContainer;
 
+import dataManager.ActiveCourt;
 import frame.ControlPanel;
 import frame.RootFrame;
 
 public class SubPage3MainPanel extends JPanel {
 
 	
-
+	public static ArrayList<ActiveCourt> cList;
 	
 
 	public SubPage3MainPanel(){
@@ -34,6 +36,8 @@ public class SubPage3MainPanel extends JPanel {
 
 		//SubPage3Frame.temp = temp;
 		// 메인 패널 디자인
+		RootFrame.updateActiveCourt();
+		cList = RootFrame.aroundC;
 		setBounds(0, 0, 600, 900);
 		setLayout(null);
 		setVisible(true);

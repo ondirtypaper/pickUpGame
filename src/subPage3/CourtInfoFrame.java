@@ -8,6 +8,7 @@ import javax.swing.border.Border;
 
 import org.w3c.dom.Text;
 
+import dataManager.Position;
 import frame.RootFrame;
 
 import javax.swing.*;
@@ -19,7 +20,7 @@ public class CourtInfoFrame extends JFrame {
 	int nowcourtNum; // 현재 코트 인원 수
 	
 	
-	public CourtInfoFrame(Point p) {
+	public CourtInfoFrame(Position p) {
 		setSize(400, 200);
 		Point point=new Point();
 		point.setLocation(p.getX()+675, p.getY()+110);
@@ -88,14 +89,16 @@ public class CourtInfoFrame extends JFrame {
 		courtInfoText.setBounds(170, 25, 200, 113);
 		courtInfoText.setBackground(Color.cyan);
 		// 코트 정보 내용
-		String str1 = "우레탄";
-		String str2 = "가능";
-		String str3 = "있음";
+		
 		int str4 = 2;
-		JLabel texture = new JLabel("코트 재질 " + str1);
-		JLabel parking = new JLabel("주차 여부 " + str2);
-		JLabel night = new JLabel("야간 조명 " + str3);
-		JLabel ring = new JLabel("골대 수 " + str4);
+		JLabel texture = new JLabel();
+		texture.setText(SubPage3MainPanel.cList.get(0).getTexture());
+		System.out.println(SubPage3MainPanel.cList.get(0).getTexture());
+		JLabel parking = new JLabel("주차 여부 " + SubPage3MainPanel.cList.get(0).isHasParking());
+		JLabel night = new JLabel("야간 조명 " + SubPage3MainPanel.cList.get(0).isHasLight());
+		JLabel ring = new JLabel("골대 수 " + SubPage3MainPanel.cList.get(0).getRingNum());
+		JLabel toilet = new JLabel("근처 화장실 여부 " + SubPage3MainPanel.cList.get(0).isHasToilet());
+		
 		// 현재 인원수 추가 코트 도착시 누를 수 있게 도착버튼 추가하기
 		courtInfoText.add(ring);
 		courtInfoText.add(texture);

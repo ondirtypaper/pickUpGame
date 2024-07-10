@@ -13,17 +13,20 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
 import javax.swing.plaf.BorderUIResource.EmptyBorderUIResource;
 
+import dataManager.Position;
+
 public class SubPage3_Locationbutton extends JButton {
 
 	Point click = new Point();// xy담는 포인트 좌표
 	// 위치 버튼 생성자
 
-	public SubPage3_Locationbutton(Point p) {
+	public SubPage3_Locationbutton(Position p) {
 		ImageIcon icon = new ImageIcon("res/locationbutton_4040.png");
 		setIcon(icon);
 		setSize(40, 40);
 		setLayout(null);
-		setLocation(p);
+		setLocation((int)p.getX(),(int)p.getY());
+		System.out.println("SubPage3_Locationbutton :" + (int)p.getX() + ", " + (int)p.getY());
 		setVisible(true);
 
 		// 이 3개로 버튼 테두리 없앰
@@ -39,7 +42,7 @@ public class SubPage3_Locationbutton extends JButton {
 				// 마우스 떼면 다시 아이콘 작아짐
 				setSize(40, 40);
 				setIcon(icon);
-				setLocation(p);
+				setLocation((int)p.getX(),(int)p.getY());
 			}
 
 			@Override

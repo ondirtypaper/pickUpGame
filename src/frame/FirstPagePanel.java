@@ -91,6 +91,7 @@ public class FirstPagePanel extends JPanel implements ActionListener{
 		controlPanel.setSize(600,100);
 		controlPanel.setLocation(0,800);
 		
+		
 		this.add(mapPanel);
 		this.add(userLabel);
 		this.add(popUpLabel);

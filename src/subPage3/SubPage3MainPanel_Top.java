@@ -16,8 +16,6 @@ import javax.swing.JButton;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
-import frame.RootFrame;
-
 public class SubPage3MainPanel_Top extends JPanel {
 
 	public static int x, y; // 등록버튼 클릭시 좌표 입력해줄 변수
@@ -79,13 +77,13 @@ public class SubPage3MainPanel_Top extends JPanel {
 			
 			}
 		});
-
+		
+		
 		// 위치 버튼 불러오기
-		PickupGameBase base = new PickupGameBase();// 좌표 불러오기용
-		add(new SubPage3_Locationbutton(base.getPointCourt1Hong()));
-		add(new SubPage3_Locationbutton(base.getPointCourt2Sung()));
-		add(new SubPage3_Locationbutton(base.getPointCourt3dong()));
-		add(new SubPage3_Locationbutton(base.getPointCourt4Catholic()));
+		add(new SubPage3_Locationbutton(SubPage3MainPanel.cList.get(0).getP()));
+		add(new SubPage3_Locationbutton(SubPage3MainPanel.cList.get(1).getP()));
+		add(new SubPage3_Locationbutton(SubPage3MainPanel.cList.get(2).getP()));
+		add(new SubPage3_Locationbutton(SubPage3MainPanel.cList.get(3).getP()));
 
 		addMouseListener(new MouseListener() {
 
