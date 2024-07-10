@@ -4,6 +4,7 @@ import java.awt.geom.Point2D;
 import java.io.EOFException;
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
@@ -102,7 +103,7 @@ public class DataManager {
 	/**
 	 * 현재 가입된 회원 전체를 파일 user.data에 mapping하는 method
 	 */
-	public void saveRegList() {
+	private void saveRegList() {
 		File f = new File(USER_DATA_BASE);
 		try (FileOutputStream fos = new FileOutputStream(f, false);
 				ObjectOutputStream oos = new ObjectOutputStream(fos)){
@@ -118,7 +119,7 @@ public class DataManager {
 	/**
 	 * 현재 가입된 회원 전체를 파일로부터 불러와 regList에 mapping하는 method
 	 */
-	public void initRegList() {
+	private void initRegList() {
 		File f = new File(USER_DATA_BASE);
 		Object data = new Object();
 		try(FileInputStream fis = new FileInputStream(f);
