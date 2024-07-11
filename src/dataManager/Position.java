@@ -22,7 +22,7 @@ public class Position extends Point2D implements Serializable{
 	}
 	public Position(int x, int y) {
 		this.x = (double)x;
-		this.x = (double)y;
+		this.y = (double)y;
 	}
 	@Override
 	public double getX() {
