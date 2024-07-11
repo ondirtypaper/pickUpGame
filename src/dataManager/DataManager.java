@@ -282,7 +282,7 @@ public class DataManager {
 					data = ois.readObject();
 					
 					Court c = (Court)data;
-					if(courtList.add(c)) System.out.println("dataManager : " + c.getId() + " data is just read from file.");
+					if(courtList.add(c)) System.out.println("dataManager : " + c.getId() + " data is just read from file." + c.getP().getX() +","+c.getP().getY() + "< position");
 				} catch (EOFException e) {
 					ois.close();
 					break;
