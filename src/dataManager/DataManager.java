@@ -28,15 +28,18 @@ public class DataManager {
 	public static final String USER_DATA_BASE = "data/user.data";
 	public static final String COURT_DATA_BASE = "data/court.data";
 	public static final String MY_PLACE_DATA_BASE = "data/myPlace.data";
+	public static final String REVIEW_DATA_BASE = "data/review.data";
 	
 	ArrayList<User> regList;
 	ArrayList<Court> courtList;
 	ArrayList<ActiveUser> activeList;
 	ArrayList<MyPlace> myPlaceList;
+	ArrayList<Review> reviewList;
 	
 	
 	
 	public DataManager(){
+		
 		regList = new ArrayList<User>();
 		initRegList();
 
@@ -45,6 +48,10 @@ public class DataManager {
 		
 		myPlaceList = new ArrayList<MyPlace>();
 		initMyPlaceList();
+		
+		reviewList = new ArrayList<Review>();
+		initReviewList();
+		
 		
 		activeList = new ArrayList<ActiveUser>();
 	}
@@ -310,6 +317,47 @@ public class DataManager {
 			e.printStackTrace();
 		}
 		
+	}
+	/**
+	 * read file to init reviewList
+	 */
+	private void initReviewList() {
+		File f = new File(REVIEW_DATA_BASE);
+		Object data = new Object();
+		try(FileInputStream fis = new FileInputStream(f);
+				ObjectInputStream ois = new ObjectInputStream(fis)){
+			System.out.println("dataManager : " + f.toString() + "file found successfully");
+			while(true) {
+				try {
+					data = ois.readObject();
+					
+					Review r = (Review)data;
+					reviewList.add(r);
+				} catch (EOFException e) {
+					ois.close();
+					break;
+				}
+			}
+		} catch (IOException | ClassNotFoundException e) {
+			e.printStackTrace();
+		}
+		
+	}
+	/**
+	 * write file review.data
+	 */
+	private void saveReviewList() {
+		File f = new File(REVIEW_DATA_BASE);
+		try (FileOutputStream fos = new FileOutputStream(f, false);
+				ObjectOutputStream oos = new ObjectOutputStream(fos)){
+			for(Review r : reviewList) {
+				oos.writeObject(r);
+			}
+				oos.flush();
+		} catch (IOException e) {
+			e.printStackTrace();
+			System.out.println("file out failed");
+		}
 	}
 	/**
 	 * write file myPlace.data
