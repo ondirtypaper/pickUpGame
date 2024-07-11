@@ -21,6 +21,7 @@ public class MapItem extends JLabel implements MouseListener{
 	String id;
 	int itemType;
 	ImageIcon ballIcon = new ImageIcon("res/justABall.png");
+	ImageIcon courtIcon = new ImageIcon("res/locabtn.png");
 	Position p;
 
 	public MapItem(String id, double x, double y, int itemType) {
@@ -30,7 +31,12 @@ public class MapItem extends JLabel implements MouseListener{
 		p = new Position();
 		p.setLocation(x, y);
 		this.itemType = itemType;
-		this.setIcon(new ImageIcon(ballIcon.getImage().getScaledInstance(35, 35, 0)));
+		if (itemType == USER_TYPE) {
+			this.setIcon(new ImageIcon(ballIcon.getImage().getScaledInstance(35, 35, 0)));
+		}
+		else if (itemType == COURT_TYPE) {
+			this.setIcon(new ImageIcon(courtIcon.getImage().getScaledInstance(35, 35, 0)));
+		}
 		this.setSize(35,35);
 		this.addMouseListener(this);
 	}
@@ -58,7 +64,14 @@ public class MapItem extends JLabel implements MouseListener{
 	public void mouseEntered(MouseEvent e) {
 		
 		//System.out.println("mouse entered in mapItem" + e.getComponent().getName());
-		this.setIcon(new ImageIcon(ballIcon.getImage().getScaledInstance(50, 50, 0)));
+		//this.setIcon(new ImageIcon(ballIcon.getImage().getScaledInstance(50, 50, 0)));
+		if (this.itemType == USER_TYPE) {
+			this.setIcon(new ImageIcon(ballIcon.getImage().getScaledInstance(50, 50, 0)));
+		}
+		else if (this.itemType == COURT_TYPE) {
+			this.setIcon(new ImageIcon(courtIcon.getImage().getScaledInstance(50, 50, 0)));
+		}
+		
 		this.setSize(50,50);
 		this.setLocation((int)this.getLocation().getX()-8, (int)this.getLocation().getY()-8);
 		 
@@ -66,8 +79,14 @@ public class MapItem extends JLabel implements MouseListener{
 
 	@Override
 	public void mouseExited(MouseEvent e) {
-		// TODO Auto-generated method stub
-		this.setIcon(new ImageIcon(ballIcon.getImage().getScaledInstance(35, 35, 0)));
+		
+		if (this.itemType == USER_TYPE) {
+			this.setIcon(new ImageIcon(ballIcon.getImage().getScaledInstance(35, 35, 0)));
+		}
+		else if (this.itemType == COURT_TYPE) {
+			this.setIcon(new ImageIcon(courtIcon.getImage().getScaledInstance(35, 35, 0)));
+		}
+		
 		this.setSize(35,35);
 		this.setLocation((int)this.getLocation().getX()+8, (int)this.getLocation().getY()+8);
 		

@@ -18,6 +18,7 @@ import javax.swing.JPanel;
 import javax.swing.JProgressBar;
 import javax.swing.Timer;
 
+import dataManager.ActiveCourt;
 import dataManager.ActiveUser;
 import dataManager.Position;
 
@@ -45,7 +46,7 @@ public class FirstPagePanel extends JPanel implements ActionListener{
 
 	ArrayList<MapItem> list;
 	//MapItem[] itemLabels = new MapItem[10];
-	JLabel[] itemLabel = new JLabel[10];
+	ArrayList<JLabel> itemLabel = new ArrayList<JLabel>();
 	
 
 	FirstPagePanel() {
@@ -150,12 +151,22 @@ public class FirstPagePanel extends JPanel implements ActionListener{
 //			this.setItem(item);
 //		}
 		list.removeAll(list);
+		
 		RootFrame.updateActiveUsers();
+		RootFrame.updateActiveCourt();
+		
 		for (ActiveUser au : RootFrame.aroundAU) {
 			list.add(new MapItem(au.getEmail(),
 					au.getCurrentLocation().getX(),
 					au.getCurrentLocation().getY(),
 					MapItem.USER_TYPE));
+		}
+		
+		for (ActiveCourt ac : RootFrame.aroundC) {
+			list.add(new MapItem(ac.getId()+"",
+					(int)ac.getP().getX(),
+					(int)ac.getP().getY(),
+					MapItem.COURT_TYPE));
 		}
 		
 		for(int i=0; i < list.size();i++) {
@@ -176,16 +187,26 @@ public class FirstPagePanel extends JPanel implements ActionListener{
 		 
 	}
 	public void updateItem(MapItem item, int index) {
-		itemLabel[index].setLocation((int)((item.p.getX() - x) + 300) ,(int)((item.p.getY() - y) + 300));
-		itemLabel[index].revalidate();
-		itemLabel[index].repaint();
+		if (item.itemType == MapItem.USER_TYPE) {
+			itemLabel.get(index).setLocation((int)((item.p.getX() - x) + 300) ,(int)((item.p.getY() - y) + 300));
+		} else if (item.itemType == MapItem.COURT_TYPE) {
+			itemLabel.get(index).setLocation((int)((item.p.getX() - x) + 300) ,(int)((item.p.getY() - y) + 300));
+		}
+		itemLabel.get(index).revalidate();
+		itemLabel.get(index).repaint();
 	}
 	public void setItem(MapItem item, int index) {
-		itemLabel[index] = item;
-		itemLabel[index].setName(""+item.id);
+		itemLabel.add(index, item); 
+		itemLabel.get(index).setName(""+item.id);
 		
-		itemLabel[index].setLocation((int)((item.p.getX() - x) + 300) ,(int)((item.p.getY() - y) + 300));
-		this.add(itemLabel[index]);
+		// TODO : implement base on real geometry position
+		if (item.itemType == MapItem.USER_TYPE) {
+			itemLabel.get(index).setLocation((int)((item.p.getX() - x) + 300) ,(int)((item.p.getY() - y) + 300));
+		} else if (item.itemType == MapItem.COURT_TYPE) {
+			itemLabel.get(index).setLocation((int)((item.p.getX() - x) + 300) ,(int)((item.p.getY() - y) + 300));
+		}
+		
+		this.add(itemLabel.get(index));
 		//System.out.println("try to set item" + item.id + " at " + (item.p.getX() - x) + "," + (item.p.getY() - y));
 	}
 	
