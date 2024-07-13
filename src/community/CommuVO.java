@@ -4,6 +4,7 @@ public class CommuVO {
 	
 	private String title;
 	private String deTail;
+	private String pName;
 	
 	public String getTitle() {
 		return title;
@@ -17,13 +18,17 @@ public class CommuVO {
 	public void setDeTail(String deTail) {
 		this.deTail = deTail;
 	}
-
-	
-	
-	public CommuVO(String title, String deTail) {
+	public String getpName() {
+		return pName;
+	}
+	public void setpName(String pName) {
+		this.pName = pName;
+	}
+	public CommuVO(String title, String deTail, String pName) {
 		
 		this.title = title;
 		this.deTail = deTail;
+		this.pName = pName;
 	}
 	
 	

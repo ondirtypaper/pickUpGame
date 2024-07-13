@@ -17,58 +17,25 @@ import javax.swing.JPanel;
 import frame.ControlPanel;
 import frame.RootFrame;
 
+//mainpanel과 같은 문제가 생겨서 같은 방법으로 임시 해결함(toppanel따로 만들어서 붙이는 방식)
+
+//사진 더보기를 클릭하면 전환되는 세부 이미지 패널
 public class CourtDetailImagePanel extends JPanel {
 
-	public static CourtDetailImagePanel moreImg;
-	public static CourtDetailImageLabel cuLa=new CourtDetailImageLabel("이미지2");
-	
-	public static void labelChange(ImageIcon icon) {
-		
-		cuLa.setIcon(icon);
-		
-	}
-	
-
+	// 생성자
 	public CourtDetailImagePanel() {
-		//SubPage3Frame.temp = temp;
+		// 패널 디자인
+		setSize(600, 900);
 		setLayout(null);
-		setSize(600,900);
-		JPanel innerPanel = new JPanel();
-		
-		
-		innerPanel.setSize(600, 800);
-		innerPanel.setLocation(0, 0);
-		innerPanel.setBackground(Color.darkGray);
-		innerPanel.setLayout(new FlowLayout(FlowLayout.CENTER, 7, 200));
-		innerPanel.setVisible(true);
-		// 위에 크게 사진 띄우고 아래에 작은 사진들로 전환버튼 클릭시 효과있으면 좋을듯
-		String[] courtImg= {"res/CourtDetailImage2_75x42.png",
-				"res/CourtDetailImage3_75x42.png","res/CourtDetailImage4_75x42.png","res/CourtDetailImage5_75x42.png",
-				"res/CourtDetailImage6_75x42.png","res/CourtDetailImage7_75x42.png"};
-		ImageIcon[] courtImgIcon = new ImageIcon[6];
-		for (int i = 0; i < courtImgIcon.length; i++) {
-			courtImgIcon[i]=new ImageIcon(courtImg[i]);
-		}
-		innerPanel.add(cuLa);
-		
-		
-		
-		innerPanel.add(new CourtDetailmageButton(courtImgIcon[0],"이미지2"));
-		innerPanel.add(new CourtDetailmageButton(courtImgIcon[1],"이미지3"));
-		innerPanel.add(new CourtDetailmageButton(courtImgIcon[2],"이미지4"));
-		innerPanel.add(new CourtDetailmageButton(courtImgIcon[3],"이미지5"));
-		innerPanel.add(new CourtDetailmageButton(courtImgIcon[4],"이미지6"));
-		innerPanel.add(new CourtDetailmageButton(courtImgIcon[5],"이미지7"));
-		
-		
-		this.add(innerPanel);
+		setVisible(true);
+		add(new CourtDetailImagePanel_Top());
+
 		// Control panel 추가 by 성배
 		ControlPanel controlPanel = new ControlPanel();
 		controlPanel.setBackground(RootFrame.MAIN_RED);
-		controlPanel.setSize(600,100);
-		controlPanel.setLocation(0,800);
-		
-		
+		controlPanel.setSize(600, 100);
+		controlPanel.setLocation(0, 800);
+
 		this.add(controlPanel);
 	}
 
