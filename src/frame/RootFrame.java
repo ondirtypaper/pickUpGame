@@ -41,11 +41,18 @@ public class RootFrame extends JFrame{
 	public static final Color MAIN_RED = new Color(0xC85356);
 	public static final Color MAIN_ORANGE = new Color(0xED6B44);
 	
+	/**
+	 * 프로그램의 메인 창 역할을 하는 RootFrame 생성자
+	 * 
+	 * @param e
+	 */
 	
 	private RootFrame(JPanel e) {
 		
 		/**
 		 * Set Look and Feel
+		 * JComponent의 전체 테마를 설정하는 부분
+		 * 시스템 설정과 동일한 테마를 불러옴
 		 */
 		try {
 		      UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
