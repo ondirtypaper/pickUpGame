@@ -41,7 +41,7 @@ public class ReviewBegin extends JPanel {
         // ReviewMake로 가는 버튼
         JButton bts = new JButton("새로운 리뷰");
         bts.setBackground(Color.white);
-        bts.setFont(new Font("굴림", Font.BOLD, 20));
+        //bts.setFont(new Font("굴림", Font.BOLD, 20));
         bts.setPreferredSize(new Dimension(176, 50));
         menu.add(bts);
 
@@ -75,16 +75,16 @@ public class ReviewBegin extends JPanel {
 
         for (ReviewVO i : reList) {
             JPanel postPanel = new JPanel(new BorderLayout());
-            postPanel.setPreferredSize(new Dimension(576, 40));
+            postPanel.setPreferredSize(new Dimension(576, 60));
             postPanel.setBackground(Color.white);
             postPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 
             JLabel title = new JLabel(i.getTitle());
-            title.setFont(new Font("굴림", Font.PLAIN, 16));
+            title.setFont(new Font("굴림", Font.PLAIN, 20));
             postPanel.add(title, BorderLayout.NORTH);
 
             JLabel writer = new JLabel("작성자: " + i.getWriter());
-            writer.setFont(new Font("굴림", Font.BOLD, 10));
+            writer.setFont(new Font("굴림", Font.BOLD, 16));
             postPanel.add(writer, BorderLayout.CENTER);
 
             postPanel.addMouseListener(new MouseAdapter() {
@@ -94,7 +94,7 @@ public class ReviewBegin extends JPanel {
                 }
                 @Override
                 public void mouseEntered(java.awt.event.MouseEvent arg0) {
-                	title.setFont(new Font("굴림", Font.BOLD, 16));
+                	title.setFont(new Font("굴림", Font.BOLD, 20));
                 }
                 
                 @Override

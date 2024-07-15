@@ -55,7 +55,8 @@ public class RootFrame extends JFrame{
 		 * 시스템 설정과 동일한 테마를 불러옴
 		 */
 		try {
-		      UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+		      //UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+			UIManager.setLookAndFeel("javax.swing.plaf.nimbus.NimbusLookAndFeel");
 		} catch (ClassNotFoundException | InstantiationException | IllegalAccessException | UnsupportedLookAndFeelException ex) {
 		      Logger.getLogger(RootFrame.class.getName()).log(Level.SEVERE, null, ex);
 		}
