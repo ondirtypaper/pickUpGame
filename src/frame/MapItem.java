@@ -17,11 +17,15 @@ public class MapItem extends JLabel implements MouseListener{
 	private static final long serialVersionUID = 1L;
 	public static final int USER_TYPE = 1;
 	public static final int COURT_TYPE = 2;
+	public static final int STAR_TYPE = 3;
+	
 	
 	String id;
 	int itemType;
 	ImageIcon ballIcon = new ImageIcon("res/justABall.png");
 	ImageIcon courtIcon = new ImageIcon("res/locabtn.png");
+	ImageIcon starIcon = new ImageIcon("res/icons8-star-48.png");
+	
 	Position p;
 
 	public MapItem(String id, double x, double y, int itemType) {
@@ -36,6 +40,9 @@ public class MapItem extends JLabel implements MouseListener{
 		}
 		else if (itemType == COURT_TYPE) {
 			this.setIcon(new ImageIcon(courtIcon.getImage().getScaledInstance(35, 35, 0)));
+		}
+		else if (itemType == STAR_TYPE) {
+			this.setIcon(new ImageIcon(starIcon.getImage().getScaledInstance(35, 35, 0)));
 		}
 		this.setSize(35,35);
 		this.addMouseListener(this);

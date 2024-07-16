@@ -36,13 +36,12 @@ public class CommuBegin extends JPanel {
         JPanel menu = new JPanel();
         menu.setSize(576, 40);
         menu.setLocation(4, 740);
-        menu.setBackground(Color.white);
         menu.setLayout(new GridLayout(1, 2, 10, 10)); // 버튼이 나란히 배치될 수 있도록 설정
 
         // PostMake로 가는 버튼
         JButton bts = new JButton("새 글 쓰기");
         bts.setBackground(Color.white);
-        bts.setFont(new Font("맑은 고딕", Font.BOLD, 20));
+        bts.setFont(new Font("굴림", Font.BOLD, 20));
         bts.setPreferredSize(new Dimension(176, 50));
         menu.add(bts);
 
@@ -56,7 +55,7 @@ public class CommuBegin extends JPanel {
         // ReviewBegin으로 가는 버튼
         JButton btsre = new JButton("리뷰채널로 가기");
         btsre.setBackground(Color.white);
-        btsre.setFont(new Font("맑은 고딕", Font.BOLD, 20));
+        btsre.setFont(new Font("굴림", Font.BOLD, 20));
         btsre.setPreferredSize(new Dimension(176, 50));
         menu.add(btsre);
 
@@ -82,11 +81,11 @@ public class CommuBegin extends JPanel {
             postPanel.setBackground(Color.white);
 
             JLabel title = new JLabel(i.getTitle());
-            title.setFont(new Font("맑은 고딕", Font.PLAIN, 20));
+            title.setFont(new Font("굴림", Font.BOLD, 16));
             postPanel.add(title);
 
             JLabel name = new JLabel("작성자: " + i.getpName());
-            name.setFont(new Font("맑은 고딕", Font.BOLD, 16));
+            name.setFont(new Font("굴림", Font.PLAIN, 13));
             postPanel.add(name);
 
             postPanel.setBorder(new EmptyBorder(0, 0, 0, 0));
@@ -98,12 +97,12 @@ public class CommuBegin extends JPanel {
                 }
                 @Override
                 public void mouseEntered(java.awt.event.MouseEvent arg0) {
-                	title.setFont(new Font("맑은 고딕", Font.BOLD, 16));
+                	title.setFont(new Font("굴림", Font.PLAIN, 16));
                 }
                 
                 @Override
                 public void mouseExited(java.awt.event.MouseEvent e) {
-                	title.setFont(new Font("맑은 고딕", Font.PLAIN, 16));
+                	title.setFont(new Font("굴림", Font.BOLD, 16));
                  
                 }
                 
@@ -117,8 +116,16 @@ public class CommuBegin extends JPanel {
         JPanel board = new JPanel();
         board.setSize(576, 180);
         board.setLocation(4, 0);
-        board.setBackground(new Color(0xff7f00));
-    
+        board.setBackground(RootFrame.MAIN_RED);
+        
+        // 상단 배너 자유게시판 글자
+        JLabel boardJLabel = new JLabel("자유 게시판");
+        boardJLabel.setForeground(Color.white);
+        boardJLabel.setFont(new Font("굴림", Font.PLAIN, 50));
+        boardJLabel.setSize(288,90);
+        boardJLabel.setLocation(160,45);
+        boardJLabel.setBackground(new Color(255,0,0,0));
+        add(boardJLabel);
         
         //controlPanel 삽입 by 성배
   		ControlPanel controlPanel = new ControlPanel();

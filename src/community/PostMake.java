@@ -32,14 +32,28 @@ public class PostMake extends JPanel{
 	        pm.setLocation(0, 0);
 	        pm.setLayout(null);
 	        pm.setBackground(Color.white);
-
-	        TextField title = new TextField("제목 ", 40);
-	        title.setBounds(50, 100, 500, 50);
+	        
+	        JLabel pt = new JLabel("자유게시판 작성");
+	        pt.setSize(576, 100);
+	        pt.setLocation(12, 0);
+	        pt.setFont(new Font("굴림", Font.PLAIN, 18));
+	        pt.setHorizontalAlignment(JLabel.CENTER);
+	        pt.setOpaque(true);
+	        pt.setForeground(Color.white);
+	        pt.setBackground(RootFrame.MAIN_RED);
+	        
+	        JLabel titleLabel = new JLabel("제목 :");
+	        titleLabel.setFont(new Font("굴림", Font.PLAIN, 14));
+	        titleLabel.setBounds(30, 100, 50, 30);
+	        pm.add(titleLabel);
+	        
+	        TextField title = new TextField("", 40);
+	        title.setBounds(80, 100, 460, 50);
 	        title.setBackground(Color.white);
 
 	        JLabel writerLabel = new JLabel("작성자 :");
-	        writerLabel.setFont(new Font("맑은 고딕", Font.PLAIN, 14));
-	        writerLabel.setBounds(350, 180, 100, 30);
+	        writerLabel.setFont(new Font("굴림", Font.PLAIN, 14));
+	        writerLabel.setBounds(390, 180, 60, 30);
 	        pm.add(writerLabel);
 
 	        TextField writer = new TextField(40);
@@ -50,14 +64,14 @@ public class PostMake extends JPanel{
 	        post.setBounds(50, 230, 500, 500);
 
 	        JButton btnCheck = new JButton("게시하기");
-	        btnCheck.setBackground(Color.yellow);
-	        btnCheck.setFont(new Font("맑은 고딕", Font.BOLD, 20));
+	        btnCheck.setBackground(Color.WHITE);
+	        btnCheck.setFont(new Font("굴림", Font.BOLD, 20));
 	        btnCheck.setSize(200, 50);
 	        btnCheck.setLocation(320, 780);
 
 	        JButton btnBack = new JButton("취소");
-	        btnBack.setBackground(Color.yellow);
-	        btnBack.setFont(new Font("맑은 고딕", Font.BOLD, 20));
+	        btnBack.setBackground(Color.WHITE);
+	        btnBack.setFont(new Font("굴림", Font.BOLD, 20));
 	        btnBack.setSize(200, 50);
 	        btnBack.setLocation(70, 780);
 
@@ -88,6 +102,8 @@ public class PostMake extends JPanel{
 	        pm.add(post);
 	        pm.add(btnCheck);
 	        pm.add(btnBack);
+	        pm.add(pt);
+	        
 	        
 	        add(pm);
 	    }

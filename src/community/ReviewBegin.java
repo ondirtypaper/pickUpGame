@@ -41,7 +41,7 @@ public class ReviewBegin extends JPanel {
         // ReviewMake로 가는 버튼
         JButton bts = new JButton("새로운 리뷰");
         bts.setBackground(Color.white);
-        //bts.setFont(new Font("굴림", Font.BOLD, 20));
+        bts.setFont(new Font("굴림", Font.BOLD, 20));
         bts.setPreferredSize(new Dimension(176, 50));
         menu.add(bts);
 
@@ -75,18 +75,20 @@ public class ReviewBegin extends JPanel {
 
         for (ReviewVO i : reList) {
             JPanel postPanel = new JPanel(new BorderLayout());
-            postPanel.setPreferredSize(new Dimension(576, 60));
+            postPanel.setPreferredSize(new Dimension(576, 40));
             postPanel.setBackground(Color.white);
             postPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 
             JLabel title = new JLabel(i.getTitle());
-            title.setFont(new Font("굴림", Font.PLAIN, 20));
+            title.setFont(new Font("굴림", Font.BOLD, 16));
             postPanel.add(title, BorderLayout.NORTH);
 
             JLabel writer = new JLabel("작성자: " + i.getWriter());
-            writer.setFont(new Font("굴림", Font.BOLD, 16));
+            writer.setFont(new Font("굴림", Font.PLAIN, 13));
             postPanel.add(writer, BorderLayout.CENTER);
 
+            postPanel.setBorder(new EmptyBorder(0, 0, 0, 0));
+            
             postPanel.addMouseListener(new MouseAdapter() {
                 @Override
                 public void mouseClicked(MouseEvent e) {
@@ -94,12 +96,12 @@ public class ReviewBegin extends JPanel {
                 }
                 @Override
                 public void mouseEntered(java.awt.event.MouseEvent arg0) {
-                	title.setFont(new Font("굴림", Font.BOLD, 20));
+                	title.setFont(new Font("굴림", Font.PLAIN, 16));
                 }
                 
                 @Override
                 public void mouseExited(java.awt.event.MouseEvent e) {
-                	title.setFont(new Font("굴림", Font.PLAIN, 16));
+                	title.setFont(new Font("굴림", Font.BOLD, 16));
                  
                 }
                 
@@ -109,10 +111,20 @@ public class ReviewBegin extends JPanel {
             post.add(postPanel);
         }
 
+        // 상단 배너 패널 생성 및 위치 설정
         JPanel board = new JPanel();
         board.setSize(576, 180);
         board.setLocation(4, 0);
-        board.setBackground(new Color(0xff7f00));
+        board.setBackground(RootFrame.MAIN_RED);
+        
+     // 상단 배너 코트 리뷰 글자
+        JLabel boardJLabel = new JLabel("코트 리뷰");
+        boardJLabel.setForeground(Color.white);
+        boardJLabel.setFont(new Font("굴림", Font.PLAIN, 50));
+        boardJLabel.setSize(288,90);
+        boardJLabel.setLocation(185,45);
+        boardJLabel.setBackground(new Color(255,0,0,0));
+        add(boardJLabel);
 
       //controlPanel 삽입 by 성배
   		ControlPanel controlPanel = new ControlPanel();

@@ -29,12 +29,14 @@ public class DataManager {
 	public static final String COURT_DATA_BASE = "data/court.data";
 	public static final String MY_PLACE_DATA_BASE = "data/myPlace.data";
 	public static final String REVIEW_DATA_BASE = "data/review.data";
+	public static final String SHARED_DATA_BASE = "data/shared.data";
 	
 	ArrayList<User> regList;
 	ArrayList<Court> courtList;
 	ArrayList<ActiveUser> activeList;
 	ArrayList<MyPlace> myPlaceList;
 	ArrayList<Review> reviewList;
+	ArrayList<Shared> sharedList;
 	
 	
 	
@@ -48,6 +50,9 @@ public class DataManager {
 		
 		myPlaceList = new ArrayList<MyPlace>();
 		initMyPlaceList();
+		
+		sharedList = new ArrayList<Shared>();
+		initSharedList();
 		
 		reviewList = new ArrayList<Review>();
 		initReviewList();
@@ -343,6 +348,28 @@ public class DataManager {
 		}
 		
 	}
+	private void initSharedList() {
+		File f = new File(SHARED_DATA_BASE);
+		Object data = new Object();
+		try(FileInputStream fis = new FileInputStream(f);
+				ObjectInputStream ois = new ObjectInputStream(fis)){
+			System.out.println("dataManager : " + f.toString() + "file found successfully");
+			while(true) {
+				try {
+					data = ois.readObject();
+					
+					Review r = (Review)data;
+					reviewList.add(r);
+				} catch (EOFException e) {
+					ois.close();
+					break;
+				}
+			}
+		} catch (IOException | ClassNotFoundException e) {
+			e.printStackTrace();
+		}
+		
+	}
 	/**
 	 * write file review.data
 	 */
@@ -391,6 +418,29 @@ public class DataManager {
 			e.printStackTrace();
 			System.out.println("file out failed");
 		}
+	}
+	/**
+	 * write file shared.data
+	 */
+	private void saveSharedList() {
+		File f = new File(SHARED_DATA_BASE);
+		try (FileOutputStream fos = new FileOutputStream(f, false);
+				ObjectOutputStream oos = new ObjectOutputStream(fos)){
+			for(Court c : courtList) {
+				oos.writeObject(c);
+			}
+				oos.flush();
+		} catch (IOException e) {
+			e.printStackTrace();
+			System.out.println("file out failed");
+		}
+	}
+	
+	public boolean addShared(Shared s) {
+		
+		sharedList.add(s);
+		saveSharedList();
+		return true;
 	}
 	
 	/**

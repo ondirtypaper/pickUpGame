@@ -15,16 +15,22 @@ public class PickAGameMain {
 
 
 		// 버전 관리를 위한 log 출력
+		// Version Number
+		// 1.abcd  .이하 abcd는 가나순으로 팀원들의 업데이트 여부
+		// 강성배, 김희재, 윤형석, 서영준
+		
 		System.out.println("***************************************");
 		System.out.println("************  Pick A Game  ************");
 		System.out.println("***************************************");
-		System.out.println("****************************** Ver 1.00");
-		System.out.println("**************************** 2024-07-14");
+		System.out.println("**************************** Ver 1.1100");
+		System.out.println("**************************** 2024-07-16");
 		
 
 		// Just for test
 		// RootFrame.data.addUser("test_admin", "a@test.com", "1234pass!");
 		// data/user.data 로 테스트 계정 새로 가입할 필요 없어짐
+		
+		/* 코드 데이터 생성 코드
 		Court c1 = new Court(1, "성균관대학교 인문사회과학 캠퍼스 농구장", new Position(61, 334));
 		c1.setHasLight(true);
 		c1.setHasParking(false);
@@ -38,7 +44,7 @@ public class PickAGameMain {
 		RootFrame.data.addCourt(c2);
 		RootFrame.data.addCourt(c3);
 		RootFrame.data.addCourt(c4);
-
+		*/
 
 	}
 }

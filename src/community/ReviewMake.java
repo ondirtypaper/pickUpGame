@@ -26,19 +26,33 @@ public class ReviewMake extends JPanel {
         pm.setSize(600, 900);
         pm.setLocation(0, 0);
         pm.setLayout(null);
-        pm.setBackground(Color.gray);
+        pm.setBackground(Color.white);
+        
+        JLabel pt = new JLabel("새 리뷰 작성");
+        pt.setSize(576, 100);
+        pt.setLocation(12, 0);
+        pt.setFont(new Font("굴림", Font.PLAIN, 18));
+        pt.setHorizontalAlignment(JLabel.CENTER);
+        pt.setOpaque(true);
+        pt.setForeground(Color.white);
+        pt.setBackground(RootFrame.MAIN_RED);
 
         JLabel writerLabel = new JLabel("작성자 :");
         writerLabel.setFont(new Font("굴림", Font.PLAIN, 14));
-        writerLabel.setBounds(350, 180, 100, 30);
+        writerLabel.setBounds(390, 180, 60, 30);
         pm.add(writerLabel);
 
         TextField writer = new TextField(40);
         writer.setBounds(450, 180, 100, 30);
         writer.setBackground(Color.white);
+        
+        JLabel titleLabel = new JLabel("제목 :");
+        titleLabel.setFont(new Font("굴림", Font.PLAIN, 14));
+        titleLabel.setBounds(30, 100, 50, 30);
+        pm.add(titleLabel);
 
-        TextField title = new TextField("제목 ", 40);
-        title.setBounds(50, 100, 500, 50);
+        TextField title = new TextField("", 40);
+        title.setBounds(80, 100, 460, 50);
         title.setBackground(Color.white);
 
         TextArea post = new TextArea("글 의 내용을 적어주세요");
@@ -55,13 +69,13 @@ public class ReviewMake extends JPanel {
         pm.add(scoreComboBox);
 
         JButton btnCheck = new JButton("게시하기");
-        btnCheck.setBackground(Color.yellow);
+        btnCheck.setBackground(Color.white);
         btnCheck.setFont(new Font("굴림", Font.BOLD, 20));
         btnCheck.setSize(200, 50);
         btnCheck.setLocation(320, 780);
 
         JButton btnBack = new JButton("취소");
-        btnBack.setBackground(Color.yellow);
+        btnBack.setBackground(Color.white);
         btnBack.setFont(new Font("굴림", Font.BOLD, 20));
         btnBack.setSize(200, 50);
         btnBack.setLocation(70, 780);
@@ -92,6 +106,7 @@ public class ReviewMake extends JPanel {
         pm.add(post);
         pm.add(btnCheck);
         pm.add(btnBack);
+        pm.add(pt);
 
         add(pm);
     }
