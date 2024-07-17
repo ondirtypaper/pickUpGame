@@ -1,7 +1,10 @@
 package dataManager;
 
-public class MyPlace {
+import java.io.Serializable;
 
+public class MyPlace implements Serializable{
+
+	private static final long serialVersionUID = 1L;
 	String userEmail;
 	int id;
 	String name;
@@ -10,8 +13,8 @@ public class MyPlace {
 	public MyPlace(String userEmail, int id, String name, Position p) {
 		this.userEmail = userEmail;
 		this.id = id;
-		this.name = name;
 		this.p = p;
+		this.name=name;
 	}
 
 	public String getUserEmail() {

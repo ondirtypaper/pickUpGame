@@ -12,12 +12,13 @@ import javax.swing.JOptionPane;
 import javax.swing.SwingConstants;
 
 import dataManager.Position;
+import frame.RootFrame;
 
 //내 장소 이름 등록 뒤에 나오게 할 프레임(장소명 출력,삭제버튼,수정버튼(미구현),위치 정해주기(미구현))
 public class MyPlaceFrame extends JFrame {
 
 	
-	public MyPlaceFrame(int id,Position p,String str) {
+	public MyPlaceFrame(int id,Position p,String name) {
 		setSize(400, 200);
 		setLayout(null);
 		setBackground(Color.white);
@@ -34,7 +35,7 @@ public class MyPlaceFrame extends JFrame {
 		JLabel outputName=new JLabel();
 		outputName.setLocation(50, 0);
 		outputName.setSize(300,25);
-		outputName.setText(str);
+		outputName.setText(name);
 		outputName.setHorizontalAlignment(SwingConstants.CENTER);
 		outputName.setVerticalAlignment(SwingConstants.TOP);
 		outputName.setHorizontalTextPosition(SwingConstants.CENTER);
@@ -53,7 +54,7 @@ public class MyPlaceFrame extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				
-				SubPage3MainPanel_Top.topPanel.removeMyPlace(id);
+				SubPage3MainPanel_Top.topPanel.removeMyPlace(id,RootFrame.cUser.getEmail());
 				dispose();
 				
 			}

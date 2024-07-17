@@ -18,9 +18,8 @@ import dataManager.Position;
 //코트 장소 버튼
 public class CourtPlaceButton extends JButton {
 
-	
-	//생성자
-	public CourtPlaceButton(Position p) {
+	// 생성자
+	public CourtPlaceButton(Position p,int id) {
 		//버튼 디자인
 		ImageIcon icon = new ImageIcon("res/subPage3Img/locationbutton_4040.png");
 		setIcon(icon);
@@ -56,17 +55,11 @@ public class CourtPlaceButton extends JButton {
 		});
 
 		// 위치버튼 클릭시 코트정보 나오는 액션리스너
-		addActionListener(new ActionListener() {
+		addActionListener(e->new CourtInfoFrame(p,id)); 
 
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				new CourtInfoFrame(p);
-				
-
-			}
-		});
+			
 		
-
 	}
+	
 
 }

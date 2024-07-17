@@ -1,6 +1,7 @@
 package community;
 
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Font;
@@ -41,7 +42,7 @@ public class CommuBegin extends JPanel {
         // PostMake로 가는 버튼
         JButton bts = new JButton("새 글 쓰기");
         bts.setBackground(Color.white);
-        bts.setFont(new Font("굴림", Font.BOLD, 20));
+        bts.setFont(new Font("맑은 고딕", Font.BOLD, 20));
         bts.setPreferredSize(new Dimension(176, 50));
         menu.add(bts);
 
@@ -55,7 +56,7 @@ public class CommuBegin extends JPanel {
         // ReviewBegin으로 가는 버튼
         JButton btsre = new JButton("리뷰채널로 가기");
         btsre.setBackground(Color.white);
-        btsre.setFont(new Font("굴림", Font.BOLD, 20));
+        btsre.setFont(new Font("맑은 고딕", Font.BOLD, 20));
         btsre.setPreferredSize(new Dimension(176, 50));
         menu.add(btsre);
 
@@ -81,11 +82,13 @@ public class CommuBegin extends JPanel {
             postPanel.setBackground(Color.white);
 
             JLabel title = new JLabel(i.getTitle());
-            title.setFont(new Font("굴림", Font.BOLD, 16));
+            title.setFont(new Font("맑은 고딕", Font.BOLD, 16));
+            title.setAlignmentX(Component.CENTER_ALIGNMENT);
             postPanel.add(title);
 
-            JLabel name = new JLabel("작성자: " + i.getpName());
-            name.setFont(new Font("굴림", Font.PLAIN, 13));
+            JLabel name = new JLabel("작성자: " + i.getpName()); 
+            name.setAlignmentX(Component.CENTER_ALIGNMENT);
+            name.setFont(new Font("맑은 고딕", Font.PLAIN, 13));
             postPanel.add(name);
 
             postPanel.setBorder(new EmptyBorder(0, 0, 0, 0));
@@ -97,12 +100,12 @@ public class CommuBegin extends JPanel {
                 }
                 @Override
                 public void mouseEntered(java.awt.event.MouseEvent arg0) {
-                	title.setFont(new Font("굴림", Font.PLAIN, 16));
+                	title.setFont(new Font("맑은 고딕", Font.PLAIN, 16));
                 }
                 
                 @Override
                 public void mouseExited(java.awt.event.MouseEvent e) {
-                	title.setFont(new Font("굴림", Font.BOLD, 16));
+                	title.setFont(new Font("맑은 고딕", Font.BOLD, 16));
                  
                 }
                 
@@ -121,7 +124,7 @@ public class CommuBegin extends JPanel {
         // 상단 배너 자유게시판 글자
         JLabel boardJLabel = new JLabel("자유 게시판");
         boardJLabel.setForeground(Color.white);
-        boardJLabel.setFont(new Font("굴림", Font.PLAIN, 50));
+        boardJLabel.setFont(new Font("맑은 고딕", Font.PLAIN, 50));
         boardJLabel.setSize(288,90);
         boardJLabel.setLocation(160,45);
         boardJLabel.setBackground(new Color(255,0,0,0));

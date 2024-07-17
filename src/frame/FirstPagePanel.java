@@ -72,7 +72,7 @@ public class FirstPagePanel extends JPanel implements ActionListener{
 
 		mapPanel.add(userLabel);
 
-		popUpLabel = new JLabel("  주변 정보를 탐색중입니다.");
+		popUpLabel = new JLabel("  주변 경기장 정보를 탐색중입니다.");
 		popUpLabel.setBackground(RootFrame.MAIN_RED);
 		popUpLabel.setOpaque(true);
 		popUpLabel.setSize(600, 200);
@@ -118,8 +118,7 @@ public class FirstPagePanel extends JPanel implements ActionListener{
 	}
 
 	public void draw(Graphics g) {
-		
-		// animate circles
+		// TODO: animate circles
 		Graphics2D g2d = (Graphics2D) g;
 		raderRadius = 75;
 		g2d.setColor(Color.GRAY);

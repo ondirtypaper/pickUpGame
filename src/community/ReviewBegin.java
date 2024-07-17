@@ -2,6 +2,7 @@ package community;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Font;
@@ -13,6 +14,7 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.List;
 
+import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -41,7 +43,7 @@ public class ReviewBegin extends JPanel {
         // ReviewMake로 가는 버튼
         JButton bts = new JButton("새로운 리뷰");
         bts.setBackground(Color.white);
-        bts.setFont(new Font("굴림", Font.BOLD, 20));
+        bts.setFont(new Font("맑은 고딕", Font.BOLD, 20));
         bts.setPreferredSize(new Dimension(176, 50));
         menu.add(bts);
 
@@ -55,7 +57,7 @@ public class ReviewBegin extends JPanel {
         // CommuBegin으로 가는 버튼
         JButton btsBack = new JButton("게시판으로 이동하기");
         btsBack.setBackground(Color.white);
-        btsBack.setFont(new Font("굴림", Font.BOLD, 20));
+        btsBack.setFont(new Font("맑은 고딕", Font.BOLD, 20));
         btsBack.setPreferredSize(new Dimension(176, 50));
         menu.add(btsBack);
 
@@ -74,17 +76,19 @@ public class ReviewBegin extends JPanel {
         post.setBackground(new Color(255, 0, 0, 0)); // 배경색 설정
 
         for (ReviewVO i : reList) {
-            JPanel postPanel = new JPanel(new BorderLayout());
+            JPanel postPanel = new JPanel();
             postPanel.setPreferredSize(new Dimension(576, 40));
             postPanel.setBackground(Color.white);
-            postPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
+            postPanel.setLayout(new BoxLayout(postPanel, BoxLayout.Y_AXIS)); // 세로로 배치
 
             JLabel title = new JLabel(i.getTitle());
-            title.setFont(new Font("굴림", Font.BOLD, 16));
+            title.setAlignmentX(Component.CENTER_ALIGNMENT);
+            title.setFont(new Font("맑은 고딕", Font.BOLD, 16));
             postPanel.add(title, BorderLayout.NORTH);
 
             JLabel writer = new JLabel("작성자: " + i.getWriter());
-            writer.setFont(new Font("굴림", Font.PLAIN, 13));
+            writer.setAlignmentX(Component.CENTER_ALIGNMENT);
+            writer.setFont(new Font("맑은 고딕", Font.PLAIN, 13));
             postPanel.add(writer, BorderLayout.CENTER);
 
             postPanel.setBorder(new EmptyBorder(0, 0, 0, 0));
@@ -96,12 +100,12 @@ public class ReviewBegin extends JPanel {
                 }
                 @Override
                 public void mouseEntered(java.awt.event.MouseEvent arg0) {
-                	title.setFont(new Font("굴림", Font.PLAIN, 16));
+                	title.setFont(new Font("맑은 고딕", Font.PLAIN, 16));
                 }
                 
                 @Override
                 public void mouseExited(java.awt.event.MouseEvent e) {
-                	title.setFont(new Font("굴림", Font.BOLD, 16));
+                	title.setFont(new Font("맑은 고딕", Font.BOLD, 16));
                  
                 }
                 
@@ -120,7 +124,7 @@ public class ReviewBegin extends JPanel {
      // 상단 배너 코트 리뷰 글자
         JLabel boardJLabel = new JLabel("코트 리뷰");
         boardJLabel.setForeground(Color.white);
-        boardJLabel.setFont(new Font("굴림", Font.PLAIN, 50));
+        boardJLabel.setFont(new Font("맑은 고딕", Font.PLAIN, 50));
         boardJLabel.setSize(288,90);
         boardJLabel.setLocation(185,45);
         boardJLabel.setBackground(new Color(255,0,0,0));

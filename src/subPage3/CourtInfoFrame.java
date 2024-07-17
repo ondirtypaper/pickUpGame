@@ -3,11 +3,14 @@ package subPage3;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Iterator;
 
 import javax.swing.border.Border;
 
 import org.w3c.dom.Text;
 
+import dataManager.ActiveCourt;
+import dataManager.Court;
 import dataManager.Position;
 import frame.RootFrame;
 
@@ -21,8 +24,9 @@ public class CourtInfoFrame extends JFrame {
 	int nowcourtNum; // 현재 코트 인원 수
 	
 	//생성자
-	public CourtInfoFrame(Position p) {
+	public CourtInfoFrame(Position p,int id) {
 		
+		Court court=new Court(id, getName(), p);
 		//프레임 디자인
 		setSize(400, 200);
 		Point point=new Point();
@@ -35,9 +39,20 @@ public class CourtInfoFrame extends JFrame {
 		//프레임 위치 이동 불가능하게 하는거 찾아보기(미해결)
 		setVisible(true);
 		
-
-		// 코트 이름 정보
-		JLabel courtName = new JLabel(SubPage3MainPanel.cList.get(0).getName() + reviewPointavg); // 별점 폰트 따로 하려면 새로 jlabel 달아줘야함
+		try {
+			Iterator<ActiveCourt> it=SubPage3MainPanel.cList.iterator();
+			while (it.hasNext()) {
+				ActiveCourt activeCourt = (ActiveCourt) it.next();
+				if (activeCourt.getId()==id) {
+					court=activeCourt;
+				}
+				
+			}
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		
+		JLabel courtName = new JLabel(court.getName() + reviewPointavg); // 별점 폰트 따로 하려면 새로 jlabel 달아줘야함
 		courtName.setFont(new Font("Serif", Font.BOLD, 12));
 		courtName.setLocation(10, 0);
 		courtName.setSize(400, 20);
@@ -46,6 +61,7 @@ public class CourtInfoFrame extends JFrame {
 		add(courtName, BorderLayout.NORTH);
 
 		// 코트 사진 이미지 버튼
+		//코트에서 가지고 있어야 할듯
 		ImageIcon cImg = new ImageIcon("res/subPage3Img/CourtDetailImage1_150x112.png");
 		JButton courtImg = new JButton();
 		courtImg.setIcon(cImg);
@@ -99,11 +115,11 @@ public class CourtInfoFrame extends JFrame {
 		
 		//코트 정보 텍스트
 		JLabel texture = new JLabel();
-		texture.setText("코트 재질 : "+SubPage3MainPanel.cList.get(0).getTexture());
-		JLabel parking = new JLabel("주차 여부 : " + SubPage3MainPanel.cList.get(0).isHasParking());
-		JLabel night = new JLabel("야간 조명 : " + SubPage3MainPanel.cList.get(0).isHasLight());
-		JLabel ring = new JLabel("골대 수 : " + SubPage3MainPanel.cList.get(0).getRingNum());
-		JLabel toilet = new JLabel("근처 화장실 여부 : " + SubPage3MainPanel.cList.get(0).isHasToilet());
+		texture.setText("코트 재질 : "+court.getTexture());
+		JLabel parking = new JLabel("주차 여부 : " + court.isHasParking());
+		JLabel night = new JLabel("야간 조명 : " + court.isHasLight());
+		JLabel ring = new JLabel("골대 수 : " + court.getRingNum());
+		JLabel toilet = new JLabel("근처 화장실 여부 : " + court.isHasToilet());
 		
 		// 현재 인원수 추가 코트 도착시 누를 수 있게 도착버튼 추가하기
 		courtInfoText.add(ring);
@@ -127,6 +143,12 @@ public class CourtInfoFrame extends JFrame {
 
 			}
 		});
+		
+		Button button = new Button();
+		button.setBounds(200, 200, 200, 100);
+		button.addActionListener(e -> RootFrame.setFrameFor(new GameRoomPanel()));
+
+		add(button);
 		add(moreReview);
 
 	}
