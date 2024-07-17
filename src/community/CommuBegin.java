@@ -6,6 +6,7 @@ import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.GridLayout;
+import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
@@ -14,7 +15,9 @@ import java.awt.event.MouseListener;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.swing.Box;
 import javax.swing.BoxLayout;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -120,6 +123,7 @@ public class CommuBegin extends JPanel {
         board.setSize(576, 180);
         board.setLocation(4, 0);
         board.setBackground(RootFrame.MAIN_RED);
+        board.setLayout(new BoxLayout(board, BoxLayout.Y_AXIS));
         
         // 상단 배너 자유게시판 글자
         JLabel boardJLabel = new JLabel("자유 게시판");
@@ -129,6 +133,45 @@ public class CommuBegin extends JPanel {
         boardJLabel.setLocation(160,45);
         boardJLabel.setBackground(new Color(255,0,0,0));
         add(boardJLabel);
+        
+     // 이미지가 들어갈 패널 만들기
+        JPanel boardPanel = new JPanel();
+        boardPanel.setLayout(new BoxLayout(boardPanel, BoxLayout.X_AXIS));
+        boardPanel.setAlignmentX(Component.CENTER_ALIGNMENT); // 가운데 정렬
+        boardPanel.setBackground(RootFrame.MAIN_RED);
+        
+        // 이미지 로드
+        ImageIcon img1 = new ImageIcon("res/ballbattle.png");
+        ImageIcon img2 = new ImageIcon("res/dribble.png");
+        ImageIcon img3 = new ImageIcon("res/dunk.png");
+        ImageIcon img4 = new ImageIcon("res/dunkshoot.png");
+        
+       
+        
+        JLabel imgLabel1 = createScaledImageLabel(img1, 50, 50);
+        JLabel imgLabel2 = createScaledImageLabel(img2, 50, 50);
+        JLabel imgLabel3 = createScaledImageLabel(img3, 50, 50);
+        JLabel imgLabel4 = createScaledImageLabel(img4, 50, 50);
+       
+        imgLabel1.setAlignmentX(Component.CENTER_ALIGNMENT);
+        imgLabel2.setAlignmentX(Component.CENTER_ALIGNMENT);
+        imgLabel3.setAlignmentX(Component.CENTER_ALIGNMENT);
+        imgLabel4.setAlignmentX(Component.CENTER_ALIGNMENT);
+        
+        //이미지 사이에 공간 만들기
+        boardPanel.add(imgLabel1);
+        boardPanel.add(Box.createVerticalStrut(10)); 
+        boardPanel.add(imgLabel2);
+        boardPanel.add(Box.createVerticalStrut(10)); 
+        boardPanel.add(imgLabel3);
+        boardPanel.add(Box.createVerticalStrut(10)); 
+        boardPanel.add(imgLabel4);
+        
+        // board 패널에 컴포넌트 추가
+        board.add(boardJLabel);
+        board.add(Box.createVerticalStrut(20)); 
+        board.add(boardPanel);
+
         
         //controlPanel 삽입 by 성배
   		ControlPanel controlPanel = new ControlPanel();
@@ -150,4 +193,12 @@ public class CommuBegin extends JPanel {
         frame.add(new CommuBegin());
         frame.setVisible(true);
     }
+    
+    private static JLabel createScaledImageLabel(ImageIcon imageIcon, int width, int height) {
+        Image image = imageIcon.getImage();  
+        Image newImg = image.getScaledInstance(width, height,  java.awt.Image.SCALE_SMOOTH); 
+        ImageIcon scaledIcon = new ImageIcon(newImg); 
+        return new JLabel(scaledIcon);
+    }
+
 }
