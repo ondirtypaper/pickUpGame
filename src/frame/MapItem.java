@@ -21,7 +21,7 @@ public class MapItem extends JLabel implements MouseListener{
 	String id;
 	int itemType;
 	ImageIcon ballIcon = new ImageIcon("res/justABall.png");
-	ImageIcon courtIcon = new ImageIcon("res/locabtn.png");
+	ImageIcon courtIcon = new ImageIcon("res/subPage3Img/locationbutton_4040.png");
 	Position p;
 
 	public MapItem(String id, double x, double y, int itemType) {

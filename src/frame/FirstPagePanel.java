@@ -190,7 +190,7 @@ public class FirstPagePanel extends JPanel implements ActionListener{
 		if (item.itemType == MapItem.USER_TYPE) {
 			itemLabel.get(index).setLocation((int)((item.p.getX() - x) + 300) ,(int)((item.p.getY() - y) + 300));
 		} else if (item.itemType == MapItem.COURT_TYPE) {
-			itemLabel.get(index).setLocation((int)((item.p.getX() - x) + 300) ,(int)((item.p.getY() - y) + 300));
+			itemLabel.get(index).setLocation((int)((item.p.getX() - x) ) ,(int)((item.p.getY() - y) ));
 		}
 		itemLabel.get(index).revalidate();
 		itemLabel.get(index).repaint();
@@ -203,7 +203,7 @@ public class FirstPagePanel extends JPanel implements ActionListener{
 		if (item.itemType == MapItem.USER_TYPE) {
 			itemLabel.get(index).setLocation((int)((item.p.getX() - x) + 300) ,(int)((item.p.getY() - y) + 300));
 		} else if (item.itemType == MapItem.COURT_TYPE) {
-			itemLabel.get(index).setLocation((int)((item.p.getX() - x) + 300) ,(int)((item.p.getY() - y) + 300));
+			itemLabel.get(index).setLocation((int)((item.p.getX() - x) ) ,(int)((item.p.getY() - y)));
 		}
 		
 		this.add(itemLabel.get(index));
@@ -223,7 +223,7 @@ public class FirstPagePanel extends JPanel implements ActionListener{
 		//popUpLabel.setText(" !!" + i.id +"를 사용자가 클릭");
 		popUpLabel.setText("");
 		if(RootFrame.getActiveUser(i.id) != null) {
-			innerLabel.setText("<html> " + RootFrame.getActiveUser(i.id).getName() + "님이 주변에 있습니다. <br> ** 코트에서 매치를 요청하시겠습니까?</html>");
+			innerLabel.setText("<html> " + RootFrame.getActiveUser(i.id).getName() + "님이 주변에 있습니다. <br> 매치를 요청하시겠습니까?</html>");
 			innerLabel.setHorizontalAlignment(JLabel.CENTER);
 			JButton btnSendMsg = new JButton("요청");
 			btnSendMsg.setSize(100,40);
@@ -234,7 +234,7 @@ public class FirstPagePanel extends JPanel implements ActionListener{
 				@Override
 				public void actionPerformed(ActionEvent e) {
 					// TODO Auto-generated method stub
-					innerLabel.setText("<html> " + RootFrame.getActiveUser(i.id).getName() + "님의 수락을 기다리고 있습니다. <br> ** 코트</html>");
+					innerLabel.setText("<html> " + RootFrame.getActiveUser(i.id).getName() + "님의 수락을 기다리고 있습니다. <br> </html>");
 					getProgressBar();
 				}
 			});

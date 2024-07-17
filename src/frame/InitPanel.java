@@ -118,11 +118,13 @@ public class InitPanel extends JPanel{
 		inputLabel.setBackground(Color.white);
 		inputLabel.setOpaque(true);
 		
-		JTextField formEmail = new JTextField("a@test.com");
+		//JTextField formEmail = new JTextField("a@test.com");
+		JTextField formEmail = new JTextField("");
 		formEmail.setSize(300,50);
 		formEmail.setLocation(100,50);
 		
-		JPasswordField formPassWord = new JPasswordField("1234pass!");
+		//JPasswordField formPassWord = new JPasswordField("1234pass!");
+		JPasswordField formPassWord = new JPasswordField("");
 		formPassWord.setSize(300,50);
 		formPassWord.setLocation(100, 110);
 		

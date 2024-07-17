@@ -21,7 +21,7 @@ public class SignUpPanel extends JPanel{
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private static Font deafultFont = new Font("굴림",Font.BOLD,25);
+	private static Font deafultFont = new Font("맑은 고딕",Font.BOLD,25);
 	private ImageIcon img = new ImageIcon("res/joinus.png");
 	
 	public SignUpPanel(){
@@ -36,7 +36,7 @@ public class SignUpPanel extends JPanel{
 		textHeading.setLocation(0,0);
 		textHeading.setBackground(Color.BLACK);
 		textHeading.setOpaque(true);
-		ImageIcon imgFixed = new ImageIcon(img.getImage().getScaledInstance(450, 450, 0));
+		ImageIcon imgFixed = new ImageIcon(img.getImage().getScaledInstance(600, 450, 0));
 		textHeading.setIcon(imgFixed);
 		
 		
