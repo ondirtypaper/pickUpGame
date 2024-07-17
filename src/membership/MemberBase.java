@@ -4,102 +4,97 @@ import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Stack;
 
 public class MemberBase extends JFrame {
-    private static MemberBase instance;
-    private List<Member> memberList;
-    private Member currentMember;
-    private CardLayout cardLayout;
     private JPanel mainPanel;
-    private Stack<String> panelHistory;
+    private CardLayout cardLayout;
     private ControlPanel controlPanel;
+    private Member member;
+    private List<Member> memberList;
 
-    public static MemberBase getInstance() {
-        if (instance == null) {
-            instance = new MemberBase();
-        }
-        return instance;
-    }
-
-    private MemberBase() {
-        memberList = new ArrayList<>();
-        setTitle("회원 관리 시스템");
-        setSize(400, 300);
+    public MemberBase() {
+        setTitle("회원 관리");
+        setSize(600, 900);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
         cardLayout = new CardLayout();
         mainPanel = new JPanel(cardLayout);
-        panelHistory = new Stack<>();
 
-        // 패널들 생성
-        NameAgeInputPanel nameAgeInputPanel = new NameAgeInputPanel(this);
-        MemberInfoPanel memberInfoPanel = new MemberInfoPanel(this);
-        PointAssignmentPanel pointAssignmentPanel = new PointAssignmentPanel(this);
-        SpecialOfferPanel specialOfferPanel = new SpecialOfferPanel(this);
-        SaveLoadPanel saveLoadPanel = new SaveLoadPanel(this);
-        MemberListPanel memberListPanel = new MemberListPanel(this);
+        // 회원 목록 초기화
+        memberList = new ArrayList<>();
 
-        // 패널들을 메인 패널에 추가
-        mainPanel.add(nameAgeInputPanel, "NameAgeInput");
-        mainPanel.add(memberInfoPanel, "MemberInfo");
-        mainPanel.add(pointAssignmentPanel, "PointAssignment");
-        mainPanel.add(specialOfferPanel, "SpecialOffer");
-        mainPanel.add(saveLoadPanel, "SaveLoad");
-        mainPanel.add(memberListPanel, "MemberList");
+        // 패널 추가
+        mainPanel.add(new NameAgeInputPanel(this), "NameAgeInput");
+        mainPanel.add(new MemberInfoPanel(this), "MemberInfo");
+        mainPanel.add(new PointAssignmentPanel(this), "PointAssignment");
+        mainPanel.add(new SpecialOfferPanel(this), "SpecialOffer");
+        mainPanel.add(new SaveLoadPanel(this), "SaveLoad");
+        mainPanel.add(new MemberListPanel(this), "MemberList");
 
         // ControlPanel 추가
         controlPanel = new ControlPanel(this);
+        controlPanel.setBackground(new Color(200, 0, 0));
+        controlPanel.setSize(800, 100);
+        controlPanel.setLocation(0, 500);
 
-        JPanel wrapperPanel = new JPanel(new BorderLayout());
-        wrapperPanel.add(controlPanel, BorderLayout.SOUTH);
-        wrapperPanel.add(mainPanel, BorderLayout.CENTER);
+        add(mainPanel, BorderLayout.CENTER);
+        add(controlPanel, BorderLayout.SOUTH);
 
-        add(wrapperPanel);
-
-        // 처음에는 NameAgeInput 패널을 표시
-        showPanel("NameAgeInput");
+        // 프레임 중앙에 위치
+        setLocationRelativeTo(null);
     }
 
     public void showPanel(String panelName) {
-        if (!panelHistory.isEmpty() && !panelHistory.peek().equals(panelName)) {
-            panelHistory.push(panelName);
-        } else if (panelHistory.isEmpty()) {
-            panelHistory.push(panelName);
-        }
         cardLayout.show(mainPanel, panelName);
     }
 
     public void showPreviousPanel() {
-        if (panelHistory.size() > 1) {
-            panelHistory.pop();
-            cardLayout.show(mainPanel, panelHistory.peek());
-        }
+        cardLayout.previous(mainPanel);
     }
 
-    public void setCurrentMember(Member member) {
-        this.currentMember = member;
+    public void showNextPanel() {
+        cardLayout.next(mainPanel);
     }
 
-    public Member getCurrentMember() {
-        return currentMember;
+    public JPanel getMainPanel() {
+        return mainPanel;
     }
 
-    public void saveMemberData() {
-        if (currentMember != null && !memberList.contains(currentMember)) {
-            memberList.add(currentMember);
-        }
+    public Member getMember() {
+        return member;
+    }
+
+    public void setMember(Member member) {
+        this.member = member;
     }
 
     public List<Member> getMemberList() {
         return memberList;
     }
 
+    public void saveMemberData() {
+        if (member != null) {
+            memberList.add(member);
+        }
+    }
+
     public ControlPanel getControlPanel() {
         return controlPanel;
     }
 
-    public JPanel getMainPanel() {
-        return mainPanel;
+    public static void main(String[] args) {
+        javax.swing.SwingUtilities.invokeLater(new Runnable() {
+            public void run() {
+                MemberBase.getInstance().setVisible(true);
+            }
+        });
+    }
+
+    private static MemberBase instance;
+
+    public static MemberBase getInstance() {
+        if (instance == null) {
+            instance = new MemberBase();
+        }
+        return instance;
     }
 }

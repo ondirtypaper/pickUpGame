@@ -14,13 +14,13 @@ public class SaveLoadPanel extends JPanel {
     public SaveLoadPanel(MemberBase memberBase) {
         this.memberBase = memberBase;
 
-        setLayout(new GridLayout(2, 1));
-        setBackground(Color.GREEN);
+        setLayout(new FlowLayout(FlowLayout.CENTER, 20, 10));
+        setBackground(new Color(231, 243, 231)); // 연한 녹색 배경색
 
         saveButton = new JButton("저장");
-        loadButton = new JButton("불러오기");
-
         add(saveButton);
+
+        loadButton = new JButton("불러오기");
         add(loadButton);
 
         saveButton.addActionListener(new ActionListener() {
@@ -37,7 +37,7 @@ public class SaveLoadPanel extends JPanel {
                 memberBase.showPanel("MemberList");
                 MemberListPanel memberListPanel = (MemberListPanel) memberBase.getMainPanel().getComponent(5);
                 List<Member> members = memberBase.getMemberList();
-                memberListPanel.refreshMemberList(members);
+                memberListPanel.updateMemberList(members);
             }
         });
     }

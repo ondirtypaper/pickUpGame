@@ -5,28 +5,29 @@ import java.awt.*;
 import java.util.List;
 
 public class MemberListPanel extends JPanel {
-    private JList<Member> memberList;
-    private DefaultListModel<Member> listModel;
+    private JTextArea memberListArea;
     private MemberBase memberBase;
 
     public MemberListPanel(MemberBase memberBase) {
         this.memberBase = memberBase;
-        listModel = new DefaultListModel<>();
-        memberList = new JList<>(listModel);
-        memberList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+
         setLayout(new BorderLayout());
-        setBackground(Color.GREEN);  // Set background color to green
-        add(new JScrollPane(memberList), BorderLayout.CENTER);
+        setBackground(new Color(231, 243, 231)); // 연한 녹색 배경색
+
+        memberListArea = new JTextArea();
+        memberListArea.setEditable(false);
+        JScrollPane scrollPane = new JScrollPane(memberListArea);
+        add(scrollPane, BorderLayout.CENTER);
     }
 
-    public void refreshMemberList(List<Member> members) {
-        listModel.clear();
+    public void updateMemberList(List<Member> members) {
+        StringBuilder listContent = new StringBuilder();
         for (Member member : members) {
-            listModel.addElement(member);
+            listContent.append("이름: ").append(member.getName())
+                    .append(", 나이: ").append(member.getAge())
+                    .append(", 등급: ").append(member.getGrade())
+                    .append("\n");
         }
-    }
-
-    public Member getSelectedMember() {
-        return memberList.getSelectedValue();
+        memberListArea.setText(listContent.toString());
     }
 }

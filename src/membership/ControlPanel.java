@@ -6,54 +6,56 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class ControlPanel extends JPanel {
+    private JButton previousButton;
     private JButton nextButton;
-    private JButton backButton;
     private JButton saveLoadButton;
-    private JPanel buttonPanel;
     private MemberBase memberBase;
-    private SaveLoadPanel saveLoadPanel;
 
     public ControlPanel(MemberBase memberBase) {
         this.memberBase = memberBase;
 
         setLayout(new BorderLayout());
+        setBackground(new Color(231, 243, 231)); // 연한 녹색 배경색
 
-        // 저장/불러오기 패널 생성 및 중앙 배치
-        saveLoadPanel = new SaveLoadPanel(memberBase);
-        JPanel centerPanel = new JPanel(new FlowLayout(FlowLayout.CENTER, 20, 10));
-        centerPanel.setBackground(Color.GREEN);  // Set background color to green
-        centerPanel.add(saveLoadPanel);
-        add(centerPanel, BorderLayout.CENTER);
-
-        // 하단 버튼 패널 생성
-        buttonPanel = new JPanel(new BorderLayout());
-        buttonPanel.setBackground(Color.GREEN);  // Set background color to green
-
-        backButton = new JButton("이전");
+        previousButton = new JButton("이전");
         nextButton = new JButton("다음");
+        saveLoadButton = new JButton("저장/불러오기");
 
-        buttonPanel.add(backButton, BorderLayout.WEST);
-        buttonPanel.add(nextButton, BorderLayout.EAST);
+        JPanel leftPanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
+        leftPanel.add(previousButton);
+        leftPanel.setBackground(new Color(231, 243, 231)); // 연한 녹색 배경색
 
-        add(buttonPanel, BorderLayout.SOUTH);
+        JPanel rightPanel = new JPanel(new FlowLayout(FlowLayout.RIGHT));
+        rightPanel.add(nextButton);
+        rightPanel.setBackground(new Color(231, 243, 231)); // 연한 녹색 배경색
 
-        backButton.addActionListener(new ActionListener() {
+        JPanel centerPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
+        centerPanel.add(saveLoadButton);
+        centerPanel.setBackground(new Color(231, 243, 231)); // 연한 녹색 배경색
+
+        add(leftPanel, BorderLayout.WEST);
+        add(centerPanel, BorderLayout.CENTER);
+        add(rightPanel, BorderLayout.EAST);
+
+        previousButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 memberBase.showPreviousPanel();
             }
         });
 
-        nextButton.addActionListener(new ActionListener() {
+        saveLoadButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                Member currentMember = memberBase.getCurrentMember();
-                if (currentMember != null) {
-                    memberBase.showPanel("PointAssignment");
-                } else {
-                    JOptionPane.showMessageDialog(ControlPanel.this, "회원을 선택하세요.");
-                }
+                memberBase.showPanel("SaveLoad");
             }
         });
+    }
+
+    public void setNextAction(ActionListener actionListener) {
+        for (ActionListener al : nextButton.getActionListeners()) {
+            nextButton.removeActionListener(al);
+        }
+        nextButton.addActionListener(actionListener);
     }
 }

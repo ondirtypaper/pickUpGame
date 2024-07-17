@@ -29,12 +29,15 @@ import dataManager.Position;
 import frame.ControlPanel;
 import frame.RootFrame;
 
-//할 거 정리 
+//할거 정리 
 //1.디테일이미지 버튼 선택된 이미지 버튼 테두리에 표시 해주기
 //2. 별점 연결
 //3. 마이플레이스 db만들면 연결
 //4. 리뷰 페이지 가는거 연결
 //5. 마이플레이스 수정 버튼 생성 및 gui조정
+//6. 현재 삭제 적용 안됨
+//7. 디테일이미지 버튼이랑 위 라벨영역 구분해주면 좋을듯
+//8.코트 인포 프레임 배경색 하나 있으면 좋을듯 하얀색이라도
 
 //제일 아래에 있는 메인 패널
 //지도가 그려져 있는 탑패널과 컨트롤패널이 붙어있음
@@ -194,6 +197,7 @@ class SubPage3MainPanel_Top extends JPanel {
 					MyPlace myplace = it.next();
 					if (myplace.getId() == id && myplace.getUserEmail().equals(email)) {
 						it.remove();
+						RootFrame.updateMyPlace();
 						revalidate();
 						repaint();
 						break;
@@ -226,12 +230,13 @@ class SubPage3MainPanel_Top extends JPanel {
 		addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
+
+				Position p = new Position(e.getX() - 19, e.getY() - 37);
+				int myPlaceId = topPanel.getMyPlaceId();
+				String email = RootFrame.cUser.getEmail();
+				String name = topPanel.getName();
+				// 버튼 리스트에 추가하고 패널에다 버튼 생성하는 메서드 호출
 				if (locationRegistration.myPlaceResiFlag) {
-					Position p = new Position(e.getX() - 19, e.getY() - 37);
-					int myPlaceId = topPanel.getMyPlaceId();
-					String email = RootFrame.cUser.getEmail();
-					String name = topPanel.getName();
-					// 버튼 리스트에 추가하고 패널에다 버튼 생성하는 메서드 호출
 					SubPage3MainPanel_Top.topPanel.addMyPlace(email, myPlaceId, name, p);
 
 					SubPage3MainPanel_Top.topPanel.myPlaceId++;
@@ -239,6 +244,7 @@ class SubPage3MainPanel_Top extends JPanel {
 					// 등록이 끝나면 false
 					locationRegistration.myPlaceResiFlag = false;
 				}
+
 			}
 
 		});
@@ -269,16 +275,19 @@ class locationRegistration extends JButton {
 				myPlaceResiFlag = true;
 
 				String name = JOptionPane.showInputDialog("등록할 나만의 장소명을 입력해주세요.");
-				if (name != null && !name.trim().isEmpty()) {
+				if (name == null) {
+					myPlaceResiFlag = false;
+
+				} else if (name.trim().isEmpty()) {
+					myPlaceResiFlag = false;
+					JOptionPane.showMessageDialog(null, "최소 1자이상 입력하셔야 합니다.");
+
+				} else if (name != null && !name.trim().isEmpty()) {
 					SubPage3MainPanel_Top.topPanel.setName(name);
 
 					JOptionPane.showMessageDialog(null, "등록할 나만의 장소의 위치를 클릭해주세요");
-				} else if (name.trim().isEmpty()) {
-					JOptionPane.showMessageDialog(null, "최소 1자이상 입력하셔야 합니다.");
-					myPlaceResiFlag = false;
 				} else {
 					myPlaceResiFlag = false;
-
 				}
 
 			}

@@ -1,6 +1,8 @@
 package subPage3;
 
+import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.Point;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -19,32 +21,35 @@ public class MyPlaceFrame extends JFrame {
 
 	
 	public MyPlaceFrame(int id,Position p,String name) {
-		setSize(400, 200);
-		setLayout(null);
+		setSize(300, 100);
+		BorderLayout borderLayout=new BorderLayout();
+		setLayout(borderLayout);
 		setBackground(Color.white);
-		
+		setLocation((int)p.getX()+675,(int)p.getY()+110);
 		
 		//프레임이 화면 가운데에 뜨게 하기()안에는 컴포넌트,사이즈 고정
-		setLocationRelativeTo(null);
 		setResizable(false);
 		
 		setVisible(true);
 		setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 		
 		//장소 이름
-		JLabel outputName=new JLabel();
+		JLabel outputName=new JLabel("");
+		outputName.setFont(new Font("맑은고딕",Font.BOLD , 18));
 		outputName.setLocation(50, 0);
-		outputName.setSize(300,25);
+		outputName.setSize(280,80);
 		outputName.setText(name);
 		outputName.setHorizontalAlignment(SwingConstants.CENTER);
-		outputName.setVerticalAlignment(SwingConstants.TOP);
+		outputName.setVerticalAlignment(SwingConstants.CENTER);
 		outputName.setHorizontalTextPosition(SwingConstants.CENTER);
 		outputName.setVisible(true);
-		add(outputName);
+		
+		add(outputName,BorderLayout.CENTER);
 		
 		//삭제 버튼
-		JButton delete=new JButton("삭제");
-		delete.setBounds(250, 0, 100, 50);
+		JButton delete=new JButton("장소 삭제");
+		delete.setSize(20,20);
+//		delete.setBounds(250, 0, 100, 50);
 		delete.setBackground(Color.orange);
 		delete.setVisible(true);
 		
@@ -59,7 +64,7 @@ public class MyPlaceFrame extends JFrame {
 				
 			}
 		});
-		add(delete);
+		add(delete,BorderLayout.EAST);
 		
 		
 		
