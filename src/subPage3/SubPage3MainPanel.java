@@ -2,6 +2,7 @@ package subPage3;
 
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
@@ -262,6 +263,7 @@ class locationRegistration extends JButton {
 
 	public locationRegistration() {
 		setText("내 장소 등록");
+		setFont(CourtInfoFrame.font);
 		setLocation((int) regiBtnLocate.getX(), (int) regiBtnLocate.getY());
 		setSize(80, 40);
 		setBackground(Color.ORANGE);
