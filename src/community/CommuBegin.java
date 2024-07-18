@@ -134,7 +134,7 @@ public class CommuBegin extends JPanel {
         boardJLabel.setBackground(new Color(255,0,0,0));
         add(boardJLabel);
         
-     // 이미지가 들어갈 패널 만들기
+        // 이미지가 들어갈 패널 만들기
         JPanel boardPanel = new JPanel();
         boardPanel.setLayout(new BoxLayout(boardPanel, BoxLayout.X_AXIS));
         boardPanel.setAlignmentX(Component.CENTER_ALIGNMENT); // 가운데 정렬
