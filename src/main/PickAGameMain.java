@@ -18,8 +18,8 @@ public class PickAGameMain {
 		System.out.println("***************************************");
 		System.out.println("************  Pick A Game  ************");
 		System.out.println("***************************************");
-		System.out.println("****************************** Ver 1.2*");
-		System.out.println("**************************** 2024-07-17");
+		System.out.println("****************************** Ver 1.3*");
+		System.out.println("**************************** 2024-07-18");
 		
 
 		// Just for test

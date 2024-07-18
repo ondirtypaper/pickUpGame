@@ -8,6 +8,7 @@ import java.awt.event.ActionListener;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
@@ -93,7 +94,30 @@ public class SignUpPanel extends JPanel{
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				RootFrame.data.addUser(formUserName.getText(), formEmail.getText(), formPassWord.getText());
+				int result = RootFrame.data.addUser(formUserName.getText(), formEmail.getText(), formPassWord.getText());
+				switch(result) {
+				case 1:
+					JOptionPane.showMessageDialog(null, "가입 요청 거부 - 잘못된 형식 email");
+					break;
+				case 2:
+					JOptionPane.showMessageDialog(null, "가입 요청 거부 - 잘못된 형식 이름");
+					break;
+				case 3:
+					JOptionPane.showMessageDialog(null, "가입 요청 거부 - password 길이");
+					break;
+				case 4:
+					JOptionPane.showMessageDialog(null, "가입 요청 거부 - password 공백 포함");
+					break;
+				case 5:
+					JOptionPane.showMessageDialog(null, "가입 요청 거부 - password 영문 숫자 특수문자 중 미포함 있음");
+					break;
+				case 0:
+					JOptionPane.showMessageDialog(null, "회원가입이 완료되었습니다.");
+					//RootFrame.data.logInRequest(formEmail.getText(), formPassWord.getText());
+					RootFrame.setFrameFor(new FirstPagePanel());
+					RootFrame.setCurrentUser(0);
+					break;
+				}
 			}
 		});
 		

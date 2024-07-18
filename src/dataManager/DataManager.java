@@ -71,34 +71,34 @@ public class DataManager {
 		return LOG_IN_WRONG_EMAIL;
 	}
 	
-	public boolean addUser(String name, String email, String passWord) {
+	public int addUser(String name, String email, String passWord) {
 		if(!isValidEmail(email)) {
 			System.out.println("dataManager.Users : 가입 요청 거부 - 잘못된 형식 email");
-			return false;
+			return 1;
 		}
 		
 		if(!isValidName(name)) {
 			System.out.println("dataManager.Users : 가입 요청 거부 - 잘못된 형식 user name");
-			return false;
+			return 2;
 		}
 		int pwErrCode = isValidPassWord(passWord);
 		if(pwErrCode != 0) {
 			switch(pwErrCode) {
 			case 1:
 				System.out.println("dataManager.Users : 가입 요청 거부 - password 길이");
-				return false;
+				return 3;
 			case 2:
 				System.out.println("dataManager.Users : 가입 요청 거부 - password 공백 포함");
-				return false;
+				return 4;
 			case 3:
 				System.out.println("dataManager.Users : 가입 요청 거부 - password 영문 숫자 특수문자 중 미포함 있음");
-				return false;
+				return 5;
 			}
 		}
 		for(int i = 0; i < regList.size() ; i++) {
 			if(regList.get(i).getEmail().equals(email)) {
 				System.out.println("dataManager.Users : 가입 요청 거부 - 중복 email ");
-				return false;
+				return 6;
 			}
 		}
 		
@@ -113,7 +113,7 @@ public class DataManager {
 		 */
 		saveRegList();
 		
-		return true;
+		return 0;
 	}
 	/**
 	 * 현재 가입된 회원 전체를 파일 user.data에 mapping하는 method
