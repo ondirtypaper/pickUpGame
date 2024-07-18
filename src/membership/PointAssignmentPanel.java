@@ -10,6 +10,7 @@ public class PointAssignmentPanel extends JPanel {
     private JButton assignButton;
     private JLabel resultLabel;
     private MemberBase memberBase;
+    private Font labelFont;
 
     public PointAssignmentPanel(MemberBase memberBase) {
         this.memberBase = memberBase;
@@ -18,25 +19,32 @@ public class PointAssignmentPanel extends JPanel {
         GridBagConstraints gbc = new GridBagConstraints();
         gbc.insets = new Insets(10, 10, 10, 10);
 
+        // 기본 폰트 크기 설정
+        labelFont = new Font("맑은 고딕", Font.BOLD, 24);
+
         JLabel pointsLabel = new JLabel("부여할 포인트:");
+        pointsLabel.setFont(labelFont);
         gbc.gridx = 0;
         gbc.gridy = 0;
         gbc.anchor = GridBagConstraints.EAST;
         add(pointsLabel, gbc);
 
         pointsField = new JTextField(10);
+        pointsField.setFont(labelFont.deriveFont(20.0f)); // 텍스트 필드 폰트 크기 키우기
         gbc.gridx = 1;
         gbc.gridy = 0;
         gbc.anchor = GridBagConstraints.WEST;
         add(pointsField, gbc);
 
         assignButton = new JButton("포인트 부여");
+        assignButton.setFont(labelFont.deriveFont(20.0f)); // 버튼 폰트 크기 키우기
         gbc.gridx = 1;
         gbc.gridy = 1;
         gbc.anchor = GridBagConstraints.EAST;
         add(assignButton, gbc);
 
-        resultLabel = new JLabel();
+        resultLabel = new JLabel("");
+        resultLabel.setFont(labelFont.deriveFont(22.0f)); // 폰트 크기 키우기
         gbc.gridx = 0;
         gbc.gridy = 2;
         gbc.gridwidth = 2;

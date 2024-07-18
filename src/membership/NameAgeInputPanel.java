@@ -19,71 +19,84 @@ public class NameAgeInputPanel extends JPanel {
 
         setLayout(new GridBagLayout());
         GridBagConstraints gbc = new GridBagConstraints();
-        gbc.insets = new Insets(5, 5, 5, 5);  // 필드 간격을 줄이기 위해 Insets 값 조정
-        gbc.ipadx = 5;  // 내부 패딩 값 조정
-        gbc.ipady = 5;
+        gbc.insets = new Insets(10, 10, 10, 10);  // 필드 간격을 줄이기 위해 Insets 값 조정
+        gbc.ipadx = 10;  // 내부 패딩 값 조정
+        gbc.ipady = 10;
+
+        Font labelFont = new Font("맑은 고딕", Font.BOLD, 18);
 
         JLabel idLabel = new JLabel("아이디:");
+        idLabel.setFont(labelFont);
         gbc.gridx = 0;
         gbc.gridy = 0;
         gbc.anchor = GridBagConstraints.EAST;
         add(idLabel, gbc);
 
-        idField = new JTextField(10);
+        idField = new JTextField(15);
+        idField.setFont(labelFont);
         gbc.gridx = 1;
         gbc.gridy = 0;
         gbc.anchor = GridBagConstraints.WEST;
         add(idField, gbc);
 
         JLabel passwordLabel = new JLabel("비밀번호:");
+        passwordLabel.setFont(labelFont);
         gbc.gridx = 0;
         gbc.gridy = 1;
         gbc.anchor = GridBagConstraints.EAST;
         add(passwordLabel, gbc);
 
-        passwordField = new JPasswordField(10);
+        passwordField = new JPasswordField(15);
+        passwordField.setFont(labelFont);
         gbc.gridx = 1;
         gbc.gridy = 1;
         gbc.anchor = GridBagConstraints.WEST;
         add(passwordField, gbc);
 
         JLabel emailLabel = new JLabel("이메일:");
+        emailLabel.setFont(labelFont);
         gbc.gridx = 0;
         gbc.gridy = 2;
         gbc.anchor = GridBagConstraints.EAST;
         add(emailLabel, gbc);
 
-        emailField = new JTextField(10);
+        emailField = new JTextField(15);
+        emailField.setFont(labelFont);
         gbc.gridx = 1;
         gbc.gridy = 2;
         gbc.anchor = GridBagConstraints.WEST;
         add(emailField, gbc);
 
         JLabel nameLabel = new JLabel("이름:");
+        nameLabel.setFont(labelFont);
         gbc.gridx = 0;
         gbc.gridy = 3;
         gbc.anchor = GridBagConstraints.EAST;
         add(nameLabel, gbc);
 
-        nameField = new JTextField(10);
+        nameField = new JTextField(15);
+        nameField.setFont(labelFont);
         gbc.gridx = 1;
         gbc.gridy = 3;
         gbc.anchor = GridBagConstraints.WEST;
         add(nameField, gbc);
 
         JLabel ageLabel = new JLabel("나이:");
+        ageLabel.setFont(labelFont);
         gbc.gridx = 0;
         gbc.gridy = 4;
         gbc.anchor = GridBagConstraints.EAST;
         add(ageLabel, gbc);
 
-        ageField = new JTextField(10);
+        ageField = new JTextField(15);
+        ageField.setFont(labelFont);
         gbc.gridx = 1;
         gbc.gridy = 4;
         gbc.anchor = GridBagConstraints.WEST;
         add(ageField, gbc);
 
         submitButton = new JButton("제출");
+        submitButton.setFont(labelFont);
         gbc.gridx = 1;
         gbc.gridy = 5;
         gbc.anchor = GridBagConstraints.EAST;
