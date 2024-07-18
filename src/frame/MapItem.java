@@ -9,6 +9,7 @@ import javax.swing.JMenuItem;
 import javax.swing.JPopupMenu;
 
 import dataManager.Position;
+import subPage3.SubPage3MainPanel;
 
 public class MapItem extends JLabel implements MouseListener{
 	/**
@@ -45,7 +46,13 @@ public class MapItem extends JLabel implements MouseListener{
 	public void mouseClicked(MouseEvent e) {
 		
 		System.out.println("user click the map item" + e.getComponent().getName());
-		FirstPagePanel.setPopUpLabel(this);
+		
+		if (this.itemType == USER_TYPE) {
+			FirstPagePanel.setPopUpLabel(this);
+		}
+		else if (this.itemType == COURT_TYPE) {
+			RootFrame.setFrameFor(new SubPage3MainPanel());
+		}
 	}
 
 	@Override
